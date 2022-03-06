@@ -19,7 +19,6 @@ class StatsParser extends XMLParserGlobal{
 		if ($result === false) {
 			return false;
 		}
-
 		return $this;
 	}
 
@@ -318,6 +317,10 @@ class StatsParser extends XMLParserGlobal{
 				$query_collection = "INSERT INTO $this->playertable (id,user_id,hrank,alliance_id,hpoints,last_stats_update,playername,ogame_playerid) VALUES ";
 				$query_collection2 = "INSERT INTO $this->playertable (id,user_id,hrank,alliance_id,hpoints,last_stats_update,playername) VALUES ";
 				break;
+			case 'defense':
+				$query_collection = "INSERT INTO $this->playertable (id,user_id,defrank,alliance_id,defpoints,last_stats_update,playername,ogame_playerid) VALUES ";
+				$query_collection2 = "INSERT INTO $this->playertable (id,user_id,defrank,alliance_id,defpoints,last_stats_update,playername) VALUES ";
+				break;
 		}
 
 		for ($i=0; $i<count($players_data); $i++) {
@@ -453,6 +456,10 @@ class StatsParser extends XMLParserGlobal{
 				$query_collection .= " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id),hrank=VALUES(hrank), alliance_id=VALUES(alliance_id), hpoints=VALUES(hpoints), last_stats_update=NOW(), playername=VALUES(playername), ogame_playerid=VALUES(ogame_playerid) ";
 				$query_collection2 .= " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id),hrank=VALUES(hrank), alliance_id=VALUES(alliance_id), hpoints=VALUES(hpoints), last_stats_update=NOW(), playername=VALUES(playername)";
 				break;
+			case 'defense':
+				$query_collection .= " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id),defrank=VALUES(defrank), alliance_id=VALUES(alliance_id), defpoints=VALUES(defpoints), last_stats_update=NOW(), playername=VALUES(playername), ogame_playerid=VALUES(ogame_playerid) ";
+				$query_collection2 .= " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id),defrank=VALUES(defrank), alliance_id=VALUES(alliance_id), defpoints=VALUES(defpoints), last_stats_update=NOW(), playername=VALUES(playername)";
+				break;
 		}
 
 		if ($query_1 === true) {
@@ -476,7 +483,71 @@ class StatsParser extends XMLParserGlobal{
 		/*
 		// Player history will be updated automatically via trigger (see install.php)
 		*/
+		$this->check_heavy_losses();
 
+		return true;
+	}
+	
+	private function check_heavy_losses(){
+		$query = "
+			SELECT 
+					`historynow`.`player_id`,
+					`players`.`playername`,
+					`historynow`.`fpoints` AS fpointsnow,
+					`historyyesterday`.`fpoints` AS fpointsyesterday,
+					( `historyyesterday`.`fpoints` - historynow.`fpoints` ) AS fpointslost,
+					(SELECT GROUP_CONCAT(`galaxy`,':',`system`,':',`planet` SEPARATOR '; ') FROM `galaxy` WHERE `players`.`ogame_playerid` = `galaxy`.`ogame_playerid`) AS planets
+			FROM   `players_history` AS historynow
+				   INNER JOIN `players_history` AS historyyesterday
+						   ON historynow.`player_id` = historyyesterday.`player_id`
+							  AND historyyesterday.`year` = Date_format(Date_sub(Curdate(),
+																		INTERVAL 1 day),
+															'%Y')
+							  AND historyyesterday.`month` = Date_format(Date_sub(Curdate(),
+																		 INTERVAL 1 day),
+															 '%m'
+															 )
+							  AND historyyesterday.`day` = Date_format(Date_sub(Curdate(),
+																	   INTERVAL
+																	   1 day), '%e')
+				   INNER JOIN `players`
+						   ON historynow.`player_id` = `players`.`id`
+			WHERE  historynow.`year` = Date_format(Curdate(), '%Y')
+				   AND historynow.`month` = Date_format(Curdate(), '%m')
+				   AND historynow.`day` = Date_format(Curdate(), '%e')
+				   AND historyyesterday.fpoints > historynow.fpoints
+				   AND ( `historyyesterday`.`fpoints` - historynow.`fpoints` ) > 500
+				   AND historynow.`fpoints` < 500
+				   AND `historynow`.`notification_sent` = 0
+			ORDER BY fpointslost DESC 
+		";
+		
+		$stmt = $this->query($query);
+		
+		if (!$stmt) {
+			$this->error_object = new ErrorObject(ErrorObject::severity_error , "DB error occurred while reading heavy losses");
+			$this->error_object->add_child_message($this->get_db_error_object());
+			return false;
+		}
+		
+		while ($line = $stmt->fetch(PDO::FETCH_OBJ)) {
+			$player = $line->playername;
+			$statsbefore = $line->fpointsyesterday;
+			$statsafter = $line->fpointsnow;
+			$totalloss = $line->fpointslost;
+			$planets = $line->planets;
+
+			if(Discord::SendHeavyLossMessage($player,$statsbefore,$statsafter,$totalloss,$planets)){
+				$query = "UPDATE `players_history` 
+				SET `notification_sent` = 1 
+				WHERE 
+					`player_id` = ".$line->player_id." 
+					AND `year` = Date_format(Curdate(), '%Y')
+					AND `month` = Date_format(Curdate(), '%m')
+					AND `day` = Date_format(Curdate(), '%e')";
+				$stmt = $this->query($query);
+			}
+		}
 		return true;
 	}
 
@@ -516,6 +587,10 @@ class StatsParser extends XMLParserGlobal{
 			case 'honor_points':
 				$query_collection = "INSERT INTO $this->allytable (id,user_id,hrank, hpoints, members, last_update, allyname, ogame_allyid) VALUES ";
 				$query_end = " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id), hrank=VALUES(hrank), hpoints=VALUES(hpoints), last_update=NOW(), members=VALUES(members), ogame_allyid=VALUES(ogame_allyid)";
+				break;
+			case 'defense':
+				$query_collection = "INSERT INTO $this->allytable (id,user_id,defrank, defpoints, members, last_update, allyname, ogame_allyid) VALUES ";
+				$query_end = " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id), defrank=VALUES(defrank), defpoints=VALUES(defpoints), last_update=NOW(), members=VALUES(members), ogame_allyid=VALUES(ogame_allyid)";
 				break;
 		}
 		$alliances_added = 0;

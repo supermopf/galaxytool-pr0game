@@ -253,6 +253,7 @@ class FleetMovements extends GenericSuperclass {
 			case 'acs_attack':       return '<span class="acs_attack">'.FLEETS_MISSION_ACS_ATTACK."</span>"; break;
 			case 'moon_destruction': return '<span class="moon_destruction">'.FLEETS_MISSION_MOON_DESTRUCTION."</span>"; break;
 			case 'missile_attack':   return '<span class="missile_attack">'.FLEETS_MISSION_MISSILE_ATTACK."</span>"; break;
+			case 'transfer':   		 return '<span class="transport">Transfer</span>'; break;
 			default: throw new InvalidArgumentException();
 		}
 	}

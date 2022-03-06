@@ -69,7 +69,7 @@ class AllypageParser extends XMLParserGlobal{
 
 	private function get_player_data($player_DOMNode) {
 		$return_value = array();
-		$return_value["rank"]       = $player_DOMNode->getAttribute("rank");
+		//$return_value["rank"]       = $player_DOMNode->getAttribute("rank");
 		$return_value["playername"] = trim($player_DOMNode->getAttribute("playername"));
 		$return_value["playerid"]   = $player_DOMNode->getAttribute("playerid");
 		$return_value["galaxy"]     = $player_DOMNode->getAttribute("galaxy");
@@ -145,7 +145,7 @@ class AllypageParser extends XMLParserGlobal{
 		}
 
 		// insert player data
-		$query_collection = "INSERT INTO $this->playertable (id,user_id,rank,alliance_id,points,last_stats_update,playername,homegalaxy,homesystem,homeplanet,ogame_playerid) VALUES ";
+		$query_collection = "INSERT INTO $this->playertable (id,user_id,alliance_id,points,last_stats_update,playername,homegalaxy,homesystem,homeplanet,ogame_playerid) VALUES ";
 
 		$activity_players = array();
 		for ($i=0; $i<count($players_data); $i++) {
@@ -160,21 +160,21 @@ class AllypageParser extends XMLParserGlobal{
 			// add query data (id,rank,alliance_id,points,last_stats_update,playername,ogame_playerid)
 			if (isset($player_names_2_ids[strtolower($players_data[$i]['playername'])]["ogame_id"])) {
 				// database contains that player with ogame playerid
-				$query_collection .= " (".$player_names_2_ids[strtolower($players_data[$i]['playername'])]["id"].", $userid, ".DB::getDB()->quote($players_data[$i]['rank']).",".DB::getDB()->quote($alliance_id).",".DB::getDB()->quote($players_data[$i]['score']).",NOW(),".DB::getDB()->quote($players_data[$i]['playername']).", ".DB::getDB()->quote($players_data[$i]['galaxy']).", ".DB::getDB()->quote($players_data[$i]['system']).", ".DB::getDB()->quote($players_data[$i]['planet']).",".intval($players_data[$i]['playerid'])."), ";
+				$query_collection .= " (".$player_names_2_ids[strtolower($players_data[$i]['playername'])]["id"].", $userid,".DB::getDB()->quote($alliance_id).",".DB::getDB()->quote($players_data[$i]['score']).",NOW(),".DB::getDB()->quote($players_data[$i]['playername']).", ".DB::getDB()->quote($players_data[$i]['galaxy']).", ".DB::getDB()->quote($players_data[$i]['system']).", ".DB::getDB()->quote($players_data[$i]['planet']).",".intval($players_data[$i]['playerid'])."), ";
 			} elseif (isset($ogame_playerid_2_galaxytool_id[$players_data[$i]['playerid']])) {
 				//playername changed
-				$query_collection .= " (".$ogame_playerid_2_galaxytool_id[$players_data[$i]['playerid']].", $userid, ".DB::getDB()->quote($players_data[$i]['rank']).",".DB::getDB()->quote($alliance_id).",".DB::getDB()->quote($players_data[$i]['score']).",NOW(),".DB::getDB()->quote($players_data[$i]['playername']).", ".DB::getDB()->quote($players_data[$i]['galaxy']).", ".DB::getDB()->quote($players_data[$i]['system']).", ".DB::getDB()->quote($players_data[$i]['planet']).",".intval($players_data[$i]['playerid'])."), ";
+				$query_collection .= " (".$ogame_playerid_2_galaxytool_id[$players_data[$i]['playerid']].", $userid,".DB::getDB()->quote($alliance_id).",".DB::getDB()->quote($players_data[$i]['score']).",NOW(),".DB::getDB()->quote($players_data[$i]['playername']).", ".DB::getDB()->quote($players_data[$i]['galaxy']).", ".DB::getDB()->quote($players_data[$i]['system']).", ".DB::getDB()->quote($players_data[$i]['planet']).",".intval($players_data[$i]['playerid'])."), ";
 			} else {
 				// player new to database
 				$query_1 = true;
-				$query_collection .= " (NULL,$userid,".DB::getDB()->quote($players_data[$i]['rank']).",".DB::getDB()->quote($alliance_id).",".DB::getDB()->quote($players_data[$i]['score']).",NOW(),".DB::getDB()->quote($players_data[$i]['playername']).", ".DB::getDB()->quote($players_data[$i]['galaxy']).", ".DB::getDB()->quote($players_data[$i]['system']).", ".DB::getDB()->quote($players_data[$i]['planet']).",".intval($players_data[$i]['playerid'])."), ";
+				$query_collection .= " (NULL,$userid,".DB::getDB()->quote($alliance_id).",".DB::getDB()->quote($players_data[$i]['score']).",NOW(),".DB::getDB()->quote($players_data[$i]['playername']).", ".DB::getDB()->quote($players_data[$i]['galaxy']).", ".DB::getDB()->quote($players_data[$i]['system']).", ".DB::getDB()->quote($players_data[$i]['planet']).",".intval($players_data[$i]['playerid'])."), ";
 			}
 
 		}
 
 		// remove last "," at the queries
 		$query_collection = substr($query_collection,0,strlen($query_collection)-2);
-		$query_collection .= " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id), rank=VALUES(rank), alliance_id=VALUES(alliance_id), points=VALUES(points), last_stats_update=NOW(), playername=VALUES(playername), homegalaxy=VALUES(homegalaxy), homesystem=VALUES(homesystem), homeplanet=VALUES(homeplanet), ogame_playerid=VALUES(ogame_playerid) ";
+		$query_collection .= " ON DUPLICATE KEY UPDATE user_id=VALUES(user_id), alliance_id=VALUES(alliance_id), points=VALUES(points), last_stats_update=NOW(), playername=VALUES(playername), homegalaxy=VALUES(homegalaxy), homesystem=VALUES(homesystem), homeplanet=VALUES(homeplanet), ogame_playerid=VALUES(ogame_playerid) ";
 
 		$stmt = $this->query($query_collection);
 		if (!$stmt) {

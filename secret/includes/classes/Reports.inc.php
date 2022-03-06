@@ -147,6 +147,8 @@ class Reports extends GenericSuperclass {
 		$param = $this->convert_search_parameter($param);
 
 		$whereclause = $this->get_search_where_statement($param);
+		
+		
 
 		$from_part = "FROM $this->reporttable r
 				   		LEFT JOIN $this->dbtablename g ON (r.galaxy = g.galaxy AND r.system = g.system AND r.planet = g.planet)
@@ -172,7 +174,7 @@ class Reports extends GenericSuperclass {
 				 "p.alliance_id, a.diplomatic_status as allystatus, p.diplomatic_status as playerstatus ".
 				 $from_part." ".$whereclause." ".
 				 "ORDER BY r.galaxy, r.system, r.planet LIMIT 200";
-
+		//echo $whereclause;
 		$stmt = $this->query($query);
 		if (!$stmt) return false;
 
@@ -306,7 +308,24 @@ class Reports extends GenericSuperclass {
 			array("spiolvl","computech","waffentech","schildtech","rpz","energytech","hypertech","vbt","impulse","hra","lasertech","iontech","plasmatech","forschungsnetz","expedition","gravi"),
 			array("fleet_resis","defence_resis")
 		);
+		
+		
+		foreach ($parameter as $index => $key_array) {
+			foreach ($key_array as $key_name) {
+				$sign = (isset($param[$key_name][1])) ? $param[$key_name][1] : ">=";
+				if ($sign != ">=" && $sign != "=" && $sign != "<=") exit("possible SQL injection");
+				
+				if ($index > 4) {
+					array_push($wheres, "$key_name $sign '".$param[$key_name][0]."'");
+				} else {
+					array_push($wheres, "r.$key_name $sign '".$param[$key_name][0]."'");
+				}
+			}
+		}
 
+		/*
+		Da wir jetzt alle Parameter Senden ist max_scandepth_required nicht mehr nützlich
+		
 		$max_scandepth_required = 0;
 		foreach ($parameter as $index => $key_array) {
 			foreach ($key_array as $key_name) {
@@ -324,6 +343,7 @@ class Reports extends GenericSuperclass {
 		if ($max_scandepth_required > 0) {
 			array_push($wheres, "r.scanned >= $max_scandepth_required");
 		}
+		*/
 
 		// consider age in hours
 		if ($param['age'][0] > 0) {
@@ -341,24 +361,25 @@ class Reports extends GenericSuperclass {
 		if ($param['filter_allied'][0]) array_push($wheres, "p.diplomatic_status != 'ally'");
 		if ($param['filter_own'][0]) array_push($wheres, "p.diplomatic_status != 'own'");
 		if ($param['filter_wing'][0]) array_push($wheres, "p.diplomatic_status != 'wing'");
-
-		if ($param['report_depth'][0] != "resources") {
-			switch($param['report_depth'][0]) {
-				case "fleet":
-					array_push($wheres, "r.scanned >= 2");
-					break;
-				case "defence":
-					array_push($wheres, "r.scanned >= 3");
-					break;
-				case "buildings":
-					array_push($wheres, "r.scanned >= 4");
-					break;
-				case "research":
-					array_push($wheres, "r.scanned >= 5");
-					break;
-				default: throw new InvalidArgumentException();
-			}
+		switch($param['report_depth'][0]) {
+			case "resources":
+				array_push($wheres, "r.scanned >= 1");
+				break;
+			case "fleet":
+				array_push($wheres, "r.scanned >= 2");
+				break;
+			case "defence":
+				array_push($wheres, "r.scanned >= 3");
+				break;
+			case "buildings":
+				array_push($wheres, "r.scanned >= 4");
+				break;
+			case "research":
+				array_push($wheres, "r.scanned >= 5");
+				break;
+			default: throw new InvalidArgumentException();
 		}
+		
 		if ($param['select_planetonly'][0] !== null) {
 			if ($param['select_planetonly'][0] == "planets") {
 				array_push($wheres, "r.moon = 'false'");
