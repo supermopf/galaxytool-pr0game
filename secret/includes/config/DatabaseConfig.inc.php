@@ -3,18 +3,22 @@ require_once GALAXYTOOL_ROOT."/languages/english_probes.inc.php";
 
 const DB_REPORT_ARRAY = [
         R_METAL => [
+			"TYPE" => "ressource",
             "DBFIELD" => "metal",
             "INDEX" => 0,
         ],
         R_CRYSTAL => [
+			"TYPE" => "ressource",
             "DBFIELD" => "crystal",
             "INDEX" => 1,
         ],
         R_DEUTERIUM => [
+			"TYPE" => "ressource",
             "DBFIELD" => "deuterium",
             "INDEX" => 2,
         ],
         R_ENERGY => [
+			"TYPE" => "ressource",
             "DBFIELD" => "energy",
             "INDEX" => 3,
         ],

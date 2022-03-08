@@ -13,9 +13,6 @@ class PlanetinfoParser extends XMLParserGlobal{
 	private $unknown_entries_error_object = null;
 	private $unknown_entries_found = false;
 
-
-	private $db_index = DB_INDEX_FIELDS;
-
 	private $db_fieldnames = array(
 	"metal","crystal","deuterium","energy", // 0-3
 	"kt","gt","lj","sj","krz","ss","kolo","rec","spio","bomb","zerri","ds","skrz","sat","reaper","pathfinder", // 4-19
@@ -23,12 +20,6 @@ class PlanetinfoParser extends XMLParserGlobal{
 	"memi","krimi","deutsyn","solar","fusion","robo","nani","rawe","mesp","krissp","deutsp","folab","terra","allydep","raksilo","mbase","sensor","sprungtor","spacedock","crawler", // 30-49
 	"spiolvl","computech","waffentech","schildtech","rpz","energytech","hypertech","vbt","impulse","hra","lasertech","iontech","plasmatech","forschungsnetz","expedition","gravi" // 50-65
 	);
-
-	// resources you will lose at fleet
-	private $fleet_array = FLEET_ARRAY;
-
-	// resources you will lose at def
-	private $defence_array = DEFENCE_ARRAY;
 
 	function __construct($reporttable,$galaxytable,$playertable,$utablename,$universe) {
 		$this->xml_schema = "xml_schema/planetinfo.xsd";
