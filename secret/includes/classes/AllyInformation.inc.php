@@ -90,7 +90,7 @@ class AllyInformation extends PlayerAllyInformation {
 
 		$query = "SELECT p.*,ogame_allyid, allyname,members, a.diplomatic_status as a_dipl_status, ".
 			"a.rank,a.points,a.frank,a.fpoints,a.rrank,a.rpoints,a.hrank,a.hpoints, ".
-			"a.erank,a.epoints,a.fdrank,a.fdpoints,a.fbrank,a.fbpoints,a.flrank,a.flpoints,  p.id as player_id, ".
+			"a.erank,a.epoints,a.fdrank,a.fdpoints,a.fbrank,a.fbpoints,a.flrank,a.flpoints,a.defrank,a.defpoints,p.id as player_id, ".
 			"p.points as ppoints, p.epoints as pepoints, p.fpoints as pfpoints, p.rpoints as prpoints ".
 			"FROM $this->playertable p LEFT JOIN $this->allytable a ON (p.alliance_id=a.id) ".
 			"WHERE a.id=:allianceid ";
@@ -125,6 +125,8 @@ class AllyInformation extends PlayerAllyInformation {
 				$export["fbpoints"]     = $row["fbpoints"];
 				$export["flrank"]       = $row["flrank"];
 				$export["flpoints"]     = $row["flpoints"];
+				$export["defrank"]      = $row["defrank"];
+				$export["defpoints"]    = $row["defpoints"];
 			}
 
 			$ally_data[$row['player_id']]['player_id']   = $row['player_id'];
