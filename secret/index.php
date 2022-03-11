@@ -80,10 +80,17 @@ if ($_SESSION['s_auth']->get_setting(iAuthorization::setting_getting_started) !=
 <div id="gettingStartedInfos" dojoType="dijit.TitlePane" title="<?php echo INDEX_GETTING_STARTED; ?>" open="<?php echo $expand_getting_started; ?>">
 <?php
 switch($_SESSION['lang']) {
-	case "german":  $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-revived-for/fpgfgephimamebidafbckomhpjclmpfp"; break;
-	case "spanish": $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-revived-for/fpgfgephimamebidafbckomhpjclmpfp"; break;
-	default:        $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-revived-for/fpgfgephimamebidafbckomhpjclmpfp"; break;
+	default:        $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-for-pr0game/afmklcjabllgobbimodcfpbbkplmmeob"; break;
 }
+
+echo "Wilkommen Im Galaxytool von SG-1!<br/><br/>";
+echo "Das Galaxytool wird dich dabei unterstützen herauszufinden, was im pr0game vorgeht.<br/>";
+echo str_replace("&1",'<a target="_blank" class="external_link" href="'.$url.'">Galaxytoolbar for pr0game</a>',INDEX_GETTING_STARTED3);
+echo "<br>".INDEX_GETTING_STARTED4."<br>";
+echo INDEX_GETTING_STARTED5." ".INDEX_GETTING_STARTED6."<br><br>";
+echo "Solltest du Fragen zu unserem Galaxytool haben, melde dich einfach in #galaxytool-support auf dem SG-1 Discord.<br>";
+
+/*
 echo INDEX_GETTING_STARTED1."<br>";
 echo str_replace("&1","<strong>$global_universe</strong>",INDEX_GETTING_STARTED2)."<br>";
 echo str_replace("&1",'<a target="_blank" class="external_link" href="'.$url.'">Galaxytoolbar</a>',INDEX_GETTING_STARTED3);
@@ -107,6 +114,7 @@ $url = "https://discord.gg/rN22BecPwd";
 echo INDEX_GETTING_CHAT1." ";
 echo '<a target="_blank" class="external_link" href="'.$url.'">Discord-Invite</a><br>';
 echo INDEX_GETTING_CHAT2;
+*/
 ?>
 </div>
 <br>
@@ -134,9 +142,7 @@ $http_s = (isset($_SERVER['HTTPS'])) ? "https://" : "http://";
 <td>
 <?php
 switch($_SESSION['lang']) {
-	case "german":  $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-revived-for/fpgfgephimamebidafbckomhpjclmpfp"; break;
-	case "spanish": $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-revived-for/fpgfgephimamebidafbckomhpjclmpfp"; break;
-	default:        $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-revived-for/fpgfgephimamebidafbckomhpjclmpfp"; break;
+	default:        $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-for-pr0game/afmklcjabllgobbimodcfpbbkplmmeob"; break;
 }
 ?>
 <a class="external_link" href="<?php echo $url; ?>" target="_blank"><?php echo PLUGIN_VERSION; ?></a></td>
@@ -150,7 +156,7 @@ switch($_SESSION['lang']) {
 	default:        $url = "http://en.wiki.galaxytool.eu/index.php/Firefox_Extension"; break;
 }
 ?>
-<a class="external_link" href="<?php echo $url; ?>" target="_blank"><?php echo INDEX_TOOLBAR_INSTALL_GUIDE; ?></a></td>
+<!--<a class="external_link" href="--><?php //echo $url; ?><!--" target="_blank">--><?php //echo INDEX_TOOLBAR_INSTALL_GUIDE; ?><!--</a></td>-->
 </tr>
 <tr>
 <td colspan="2">

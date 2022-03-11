@@ -490,13 +490,14 @@ class StatsParser extends XMLParserGlobal{
 	
 	private function check_heavy_losses(){
 		$query = "
-			SELECT 
+	        SELECT 
 					`historynow`.`player_id`,
 					`players`.`playername`,
 					`historynow`.`fpoints` AS fpointsnow,
 					`historyyesterday`.`fpoints` AS fpointsyesterday,
 					( `historyyesterday`.`fpoints` - historynow.`fpoints` ) AS fpointslost,
-					(SELECT GROUP_CONCAT(`galaxy`,':',`system`,':',`planet` SEPARATOR '; ') FROM `galaxy` WHERE `players`.`ogame_playerid` = `galaxy`.`ogame_playerid`) AS planets
+					(SELECT GROUP_CONCAT(`galaxy`,':',`system`,':',`planet` SEPARATOR '; ') FROM `galaxy` WHERE `players`.`ogame_playerid` = `galaxy`.`ogame_playerid`) AS planets,
+                    FLOOR((`historyyesterday`.`fpoints` - historynow.`fpoints`)*0.3/100) AS moonchance
 			FROM   `players_history` AS historynow
 				   INNER JOIN `players_history` AS historyyesterday
 						   ON historynow.`player_id` = historyyesterday.`player_id`
@@ -516,8 +517,7 @@ class StatsParser extends XMLParserGlobal{
 				   AND historynow.`month` = Date_format(Curdate(), '%m')
 				   AND historynow.`day` = Date_format(Curdate(), '%e')
 				   AND historyyesterday.fpoints > historynow.fpoints
-				   AND ( `historyyesterday`.`fpoints` - historynow.`fpoints` ) > 500
-				   AND historynow.`fpoints` < 500
+				   AND ( `historyyesterday`.`fpoints` - historynow.`fpoints` ) > 334
 				   AND `historynow`.`notification_sent` = 0
 			ORDER BY fpointslost DESC 
 		";
@@ -529,23 +529,39 @@ class StatsParser extends XMLParserGlobal{
 			$this->error_object->add_child_message($this->get_db_error_object());
 			return false;
 		}
-		
-		while ($line = $stmt->fetch(PDO::FETCH_OBJ)) {
-			$player = $line->playername;
-			$statsbefore = $line->fpointsyesterday;
-			$statsafter = $line->fpointsnow;
-			$totalloss = $line->fpointslost;
-			$planets = $line->planets;
 
-			if(Discord::SendHeavyLossMessage($player,$statsbefore,$statsafter,$totalloss,$planets)){
-				$query = "UPDATE `players_history` 
-				SET `notification_sent` = 1 
+        $discord = new Discord();
+
+        $heavylosses = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+        foreach ($heavylosses as $heavyloss) {
+            $query = "UPDATE `players_history` 
+				SET `notification_sent` = 2 
 				WHERE 
-					`player_id` = ".$line->player_id." 
+					`player_id` = ".$heavyloss->player_id." 
 					AND `year` = Date_format(Curdate(), '%Y')
 					AND `month` = Date_format(Curdate(), '%m')
 					AND `day` = Date_format(Curdate(), '%e')";
-				$stmt = $this->query($query);
+            $ustmt = $this->query($query);
+        }
+
+        foreach ($heavylosses as $heavyloss) {
+			$player = $heavyloss->playername;
+			$statsbefore = $heavyloss->fpointsyesterday;
+			$statsafter = $heavyloss->fpointsnow;
+			$totalloss = $heavyloss->fpointslost;
+			$planets = $heavyloss->planets;
+            $moonchance = $heavyloss->moonchance;
+
+			if($discord->SendHeavyLossMessage($player,$statsbefore,$statsafter,$totalloss,$planets,$moonchance)){
+				$query = "UPDATE `players_history` 
+				SET `notification_sent` = 1 
+				WHERE 
+					`player_id` = ".$heavyloss->player_id." 
+					AND `year` = Date_format(Curdate(), '%Y')
+					AND `month` = Date_format(Curdate(), '%m')
+					AND `day` = Date_format(Curdate(), '%e')";
+                $ustmt = $this->query($query);
 			}
 		}
 		return true;

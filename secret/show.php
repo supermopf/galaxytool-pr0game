@@ -345,6 +345,9 @@ echo Layout::get_formsave_buttons("show1", true);
 			</tr>
 		</thead>
 	</table>
+    <span>Import für die Spionage Warteschlange:</span>
+    <input id="espionagequeue" type="text"/>
+    <button onclick="galaxytool.Show.displayEspionageQueue();">Daten Laden</button>
 </div>
 
 <?php

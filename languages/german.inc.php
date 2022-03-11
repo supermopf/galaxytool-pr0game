@@ -22,7 +22,7 @@ define("L_LANGUAGE","verfügbare Sprachen:");
 define("L_TIMEOUT","Session Timeout!");
 define("L_REGISTER","Registrieren");
 define("L_PWLOST","Passwort vergessen");
-define("INDEX_TITLE","OGame Galaxietool - Übersicht");
+define("INDEX_TITLE","OGame Galaxytool - Übersicht");
 define("INDEX_INFO","Informationen");
 define("INDEX_ENTRIES","Systeme insgesamt");
 define("INDEX_ENTRIES_LASTWEEK","Neue Systeme in der letzten Woche");
@@ -58,21 +58,21 @@ define("GENERAL_SAVE","Speichern");
 define("INDEX_USERMANAGEMENT","Aktivierungsübersicht");
 define("INDEX_NEEDADMIN","Freizuschaltende Accounts");
 define("INDEX_NEEDEMAIL","Noch nicht validierte Accounts");
-define("INDEX_TOOLBAR_INFO","Informationen zum Galaxietool Plugin");
-define("INDEX_TOOLBAR_URL","Galaxietool URL");
-define("INDEX_TOOLBAR_VERSION_REQUIRED","Mindestversion des Galaxietool Plugin");
+define("INDEX_TOOLBAR_INFO","Informationen zum Galaxytool Plugin");
+define("INDEX_TOOLBAR_URL","Galaxytool URL");
+define("INDEX_TOOLBAR_VERSION_REQUIRED","Mindestversion des Galaxytool Plugin");
 define("INDEX_TOOLBAR_INSTALL_GUIDE","Installationsanweisung für das Plugin");
 define("INDEX_TOOLBAR_TOKEN","Loginschlüssel");
 define("INDEX_TOOLBAR_NEW_TOKEN","Neuen Schlüssel erzeugen");
 define("INDEX_PLAYERS_WITH_N_PLANETS","Spieler mit mehr als &1 Planeten");
-define("INDEX_GETTING_STARTED","Erste Schritte mit dem Galaxietool");
-define("INDEX_GETTING_STARTED1","Willkommen im Galaxietool!");
-define("INDEX_GETTING_STARTED2","Das Galaxietool wird dich dabei unterstützen herauszufinden, was in deinem Universum &1 vorgeht.");
+define("INDEX_GETTING_STARTED","Erste Schritte mit dem Galaxytool");
+define("INDEX_GETTING_STARTED1","Willkommen im Galaxytool!");
+define("INDEX_GETTING_STARTED2","Das Galaxytool wird dich dabei unterstützen herauszufinden, was in deinem Universum &1 vorgeht.");
 define("INDEX_GETTING_STARTED3","Um aber überhaupt Daten analysieren zu können, müssen diese erst in das Tool integriert werden. Dazu benötigst du ein Plugin wie die &1 für Chrome.");
-define("INDEX_GETTING_STARTED4","Nachdem das Plugin installiert und eingerichtet wurde, surfst du durch die einzelnen OGameseiten wie sonst auch. Zusätzlich wird aber ein kleines Statusfenster erscheinen, wann immer Daten ins Galaxietool eingetragen wurden.");
-define("INDEX_GETTING_STARTED5","Sobald genügend Daten im Galaxietool vorhanden sind, kann die Analyse beginnen. So kann geschaut werden, wo Mitspieler ihre Kolonien haben, wie viele Kolonien sie besitzen, welche Spionageberichte von ihnen existieren und wann sie am häufigsten online sind.");
-define("INDEX_GETTING_STARTED6","Das Galaxietool kann aber auch zur Analyse des eigenen Fortschritts genutzt werden, indem Vergleiche mit anderen Mitspielern gezogen werden oder durch die Analyse der eigenen Kampfberichte um zu sehen was in den letzten Tagen / Wochen erbeutet wurde.");
-define("INDEX_GETTING_WIKIPAGE","Das war aber nur ein kleiner Auszug der Features des Galaxietools.");
+define("INDEX_GETTING_STARTED4","Nachdem das Plugin installiert und eingerichtet wurde, surfst du durch die einzelnen OGameseiten wie sonst auch. Zusätzlich wird aber ein kleines Statusfenster erscheinen, wann immer Daten ins Galaxytool eingetragen wurden.");
+define("INDEX_GETTING_STARTED5","Sobald genügend Daten im Galaxytool vorhanden sind, kann die Analyse beginnen. So kann geschaut werden, wo Mitspieler ihre Kolonien haben, wie viele Kolonien sie besitzen, welche Spionageberichte von ihnen existieren und wann sie am häufigsten online sind.");
+define("INDEX_GETTING_STARTED6","Das Galaxytool kann aber auch zur Analyse des eigenen Fortschritts genutzt werden, indem Vergleiche mit anderen Mitspielern gezogen werden oder durch die Analyse der eigenen Kampfberichte um zu sehen was in den letzten Tagen / Wochen erbeutet wurde.");
+define("INDEX_GETTING_WIKIPAGE","Das war aber nur ein kleiner Auszug der Features des Galaxytools.");
 define("INDEX_GETTING_WIKIPAGE2","Sämtliche Features findest du auf unserer Wikiseite.");
 define("INDEX_GETTING_BOARD","Über Feedback oder Ideen freuen wir uns in unserem Board:");
 define("INDEX_GETTING_CHAT1","Oder besuche uns direkt in unserem Discord:");
@@ -100,8 +100,8 @@ define("GENERAL_UNIT_OF_MEASURE_DAYS","Tage");
 /***************************** internal ******************************/
 /*********************************************************************/
 // index.php
-define("PROGRAM_NAME","OGame Galaxietool");
-define("SHORTNAME","Galaxietool");
+define("PROGRAM_NAME","OGame Galaxytool");
+define("SHORTNAME","Galaxytool");
 define("BACK_INDEX","Zurück zur Hauptseite");
 define("UNIVERSE","Universum");
 
@@ -139,11 +139,11 @@ define("MENU_DOWNLOADPAGE","Downloadseite");
 define("MENU_LANGUAGE","Sprachauswahl");
 define("MENU_HELP","Hilfe");
 // 4.0
-define("MENU_TOOLOPTIONS","Galaxietool Optionen");
+define("MENU_TOOLOPTIONS","Galaxytool Optionen");
 
 /*********************************************************************
-* parser.inc.php
-*********************************************************************/
+ * parser.inc.php
+ *********************************************************************/
 define("PARSER_INFO1"," wurde in die Datenbank eingetragen");
 define("PARSER_ERROR1","Fehler beim Versuch die folgenden Koordinaten einzutragen:");
 define("PARSER_ERROR2","Auswahl der Datenbank fehlgeschlagen!");
@@ -151,9 +151,9 @@ define("PARSER_ERROR3","Konnte den Datenbankserver nicht finden!");
 define("PARSER_WRONG_UNIVERSE","Falsches Universum - aktuell: \"&1\"  erwartet: \"&2\""); // &1 and &2 will be replaced at runtime
 
 /*********************************************************************
-* show.php
-*********************************************************************/
-define("SHOW_TITLE","OGame Galaxietool - Abfrageseite");
+ * show.php
+ *********************************************************************/
+define("SHOW_TITLE","OGame Galaxytool - Abfrageseite");
 define("SHOW_SEARCH","Suche in der Datenbank");
 define("SHOW_ALLYSYMBOL","Allytag");
 define("SHOW_PLAYERNAME","Spielername");
@@ -231,9 +231,9 @@ define("SHOW_FILTER_NONE","keine");
 define("SHOW_PLAYERS_WITHOUT_PROGRESS","Zeige Spieler ohne Punkteänderung innerhalb der letzten Tage");
 
 /*********************************************************************
-* status.php
-*********************************************************************/
-define("STATUS_TITLE","OGame Galaxietool - Statusseite");
+ * status.php
+ *********************************************************************/
+define("STATUS_TITLE","OGame Galaxytool - Statusseite");
 define("STATUS_DB_STATUS","Status der Datenbank");
 define("STATUS_COLOR","Farbe");
 define("STATUS_AGE1","Eintrag ein Tag alt.");
@@ -256,9 +256,9 @@ define("STATUS_DB_LEGEND","Legende");
 define("STATUS_GALAXY","Galaxieübersicht");
 
 /*********************************************************************
-* usermanagement.php
-*********************************************************************/
-define("USER_TITLE","OGame Galaxietool - Benutzerverwaltung");
+ * usermanagement.php
+ *********************************************************************/
+define("USER_TITLE","OGame Galaxytool - Benutzerverwaltung");
 define("USER_NAMES","Benutzer");
 define("USER_ERROR","Fehler");
 define("USER_NEWUSER","Neuer Benutzer");
@@ -320,9 +320,9 @@ define("USER_BB_OUTLAW","Vogelfrei");
 define("USER_INVALID_URL","Die Adresse &1 scheint ungültig zu sein. Bitte anpassen, sonst wird sie ignoriert.");
 
 /*********************************************************************
-* galaxyview.php
-*********************************************************************/
-define("VIEW_TITLE","OGame Galaxietool - Galaxieansicht");
+ * galaxyview.php
+ *********************************************************************/
+define("VIEW_TITLE","OGame Galaxytool - Galaxieansicht");
 define("VIEW_NODATA","Keine Daten vorhanden.");
 define("VIEW_GALAXY","Galaxie");
 define("VIEW_SYSTEM","Sonnensystem");
@@ -358,9 +358,9 @@ define("VIEW_GO","go");
 define("VIEW_DIAMETER","Durchmesser");
 
 /*********************************************************************
-* change_password.php
-**********************************************************************/
-define("PW_TITLE","OGame Galaxietool - Passwort ändern");
+ * change_password.php
+ **********************************************************************/
+define("PW_TITLE","OGame Galaxytool - Passwort ändern");
 define("OLD_PASSWORD","Altes Passwort");
 define("NEW_PASSWORD","Neues Passwort");
 define("CONFIRM_NEW_PASSWORD","Neues Passwort wiederholen");
@@ -370,7 +370,7 @@ define("UPDATE_DONE","Update erfolgt.");
 // new 4.2
 define("TIMEZONE_OFFSET","Zeitabweichung zum Server");
 // new 4.3
-define("DELETE_ACCOUNT","Diesen Galaxietoolaccount löschen");
+define("DELETE_ACCOUNT","Diesen Galaxytoolaccount löschen");
 define("DELETE_ACCOUNT_SAFETY_REQUEST","Den Account wirklich löschen?");
 // new 4.3.3
 define("CH_PASSWD_AUTHORIZATION","Berechtigungen");
@@ -387,9 +387,9 @@ define("CH_PASSWD_GETTING_STARTED","Zeige Einführungsinformationen auf der Star
 define("CH_PASSWD_PLUGIN","Zeige Plugininformationen auf der Startseite");
 
 /*********************************************************************
-* notices.php
-**********************************************************************/
-define("NOTICE_TITLE","OGame Galaxietool - Notizen");
+ * notices.php
+ **********************************************************************/
+define("NOTICE_TITLE","OGame Galaxytool - Notizen");
 define("NOTICE_HEADER","Notiz bearbeiten");
 define("NOTICE_HEADER2","Eigene Notizen bearbeiten");
 define("NOTICE_PUBLIC","Sichtbar für andere?");
@@ -420,9 +420,9 @@ define("NOTICE_PLAYERNAME","Spieler");
 define("NOTICE_SHOWALL","Zeige alle Notizen.");
 
 /*********************************************************************
-* reports.php
-**********************************************************************/
-define("REPORTS_TITLE","OGame Galaxietool - Spionageberichte");
+ * reports.php
+ **********************************************************************/
+define("REPORTS_TITLE","OGame Galaxytool - Spionageberichte");
 define("REPORTS_RESOURCES","Rohstoffe");
 define("REPORTS_FLEET","Flotten");
 define("REPORTS_DEFENCE","Verteidigung");
@@ -490,9 +490,9 @@ define("REPORTS_SHOW_MOONS","Monde");
 define("REPORTS_OWNER","Spionageberichte von");
 
 /*********************************************************************
-* stats.php
-**********************************************************************/
-define("STATS_TITLE","OGame Galaxietool - Statistiken");
+ * stats.php
+ **********************************************************************/
+define("STATS_TITLE","OGame Galaxytool - Statistiken");
 define("STATS_TBLHEAD","Statistiken");
 define("STATS_RANK","Platz");
 define("STATS_PLAYERNAME","Spielername");
@@ -545,8 +545,8 @@ define("STATS_MILITARY_DESTROYED","zerstörtes Militär");
 define("STATS_MILITARY_LOST","verlorenes Militär");
 
 /*********************************************************************
-* register.php
-**********************************************************************/
+ * register.php
+ **********************************************************************/
 define("REGISTER_REGISTRATE","Registrieren");
 define("REGISTER_LOGINNAME","Login-Name");
 define("REGISTER_PASSWORD","Passwort");
@@ -555,7 +555,7 @@ define("REGISTER_EMAIL","E-Mail");
 define("REGISTER_INGAME","Ingame-Name");
 define("REGISTER_ALLYTAG","Allytag");
 define("REGISTER_EMAILVERIFICATION","E-Mail-Check");
-define("REGISTER_EMAILTEXT","Bitte klicke auf den folgenden Link um die Anmeldung am Galaxietool zu beenden.");
+define("REGISTER_EMAILTEXT","Bitte klicke auf den folgenden Link um die Anmeldung am Galaxytool zu beenden.");
 define("REGISTER_ERROR1","Der Login-Benutzername ist bereits vergeben!");
 define("REGISTER_ERROR2","Fehler beim Versuch eine E-Mail abzuschicken! Bitte nimm Kontakt mit dem Serveradministrator auf.");
 define("REGISTER_ERROR3","Fehler bei der Datenbankabfrage!");
@@ -563,8 +563,8 @@ define("REGISTER_INFO1","Der Account wurde erstellt.");
 define("REGISTER_INFO2","Bitte klicke nun auf den Link in der E-Mail um die Anmeldung abzuschließen.");
 define("REGISTER_INFO3","Account bestätigt. Jetzt muss nur noch der Admin den Account freischalten.");
 define("REGISTER_BUTTON","Zurück zur Startseite");
-define("REGISTER_NEW_SUBJECT","Neuer Benutzer am Galaxietool registriert");
-define("REGISTER_NEW_MAILTEXT","Ein neuer Benutzer hat sich am Galaxietool registriert.");
+define("REGISTER_NEW_SUBJECT","Neuer Benutzer am Galaxytool registriert");
+define("REGISTER_NEW_MAILTEXT","Ein neuer Benutzer hat sich am Galaxytool registriert.");
 // new 4.2
 define("REGISTER_BACK","Zurück zur Startseite");
 // new 4.3.5
@@ -582,8 +582,8 @@ define("REGISTER_PWS4","sehr stark");
 define("REGISTER_EMAIL_USED","E-Mail Adresse wird bereits verwendet");
 
 /*********************************************************************
-* lost_password.php
-**********************************************************************/
+ * lost_password.php
+ **********************************************************************/
 define("LOSTPW_TITLE","Passwort vergessen");
 define("LOSTPW_INFO2","Das neue Passwort wurde generiert und an die entsprechende E-Mail-Adresse veschickt.");
 define("LOSTPW_BUTTON1","Passwort anfordern");
@@ -594,7 +594,7 @@ define("LOSTPW_ERROR1","Fehler bei der Datenbankabfrage!");
 define("LOSTPW_ERROR2","Es wurde kein passender Eintrag gefunden!");
 define("LOSTPW_ERROR3","Fehler beim Versuch eine E-Mail abzuschicken! Bitte nimm Kontakt mit dem Serveradministrator auf.");
 define("LOSTPW_EMAIL_SUBJECT","Passwortanforderung");
-define("LOSTPW_EMAIL_TEXT1","Hier die angeforderten Logindaten für das Galaxietool");
+define("LOSTPW_EMAIL_TEXT1","Hier die angeforderten Logindaten für das Galaxytool");
 define("LOSTPW_EMAIL_TEXT2","Nutzername");
 define("LOSTPW_EMAIL_TEXT3","Passwort");
 // new 5.0
@@ -603,9 +603,9 @@ define("LOSTPW_CONFIRM_RESET_SUBJECT","Passwort vergessen?");
 define("LOSTPW_CONFIRM_RESET_MESSAGE","Hallo,\n\ndu hast das Zurücksetzen deines Passworts beim Galaxytool beantragt. Um ein neues Passwort zu generieren, klicke bitte auf folgenden Link:");
 
 /*********************************************************************
-* userinfo.php
-**********************************************************************/
-define("USERINFO_TITLE","OGame Galaxietool - Benutzerinformationen");
+ * userinfo.php
+ **********************************************************************/
+define("USERINFO_TITLE","OGame Galaxytool - Benutzerinformationen");
 define("USERINFO_NAMES","Alle Benutzer des Tools");
 define("USERINFO_DETAIL","Detaillierte Informationen über");
 define("USERINFO_ERROR1","Kein Benutzer unter dieser ID bekannt!");
@@ -631,14 +631,14 @@ define("USERINFO_LAST_PRIVATE_NOTICE","Letzte private Notiz am");
 define("USERINFO_NUMBEROF_PUBLIC_NOTICE","Anzahl öffentlicher Notizen");
 define("USERINFO_NUMBEROF_PRIVATE_NOTICE","Anzahl privater Notizen");
 define("USERINFO_ACTIVATED","Account aktiviert");
-define("USERINFO_ACTIVATIONTEXT","Der Admin des Galaxietools hat deinen Account aktiviert.\n\nViel Spaß mit dem Galaxietool!");
+define("USERINFO_ACTIVATIONTEXT","Der Admin des Galaxytools hat deinen Account aktiviert.\n\nViel Spaß mit dem Galaxytool!");
 // new 4.8
 define("USERINFO_LAST_SUBMIT","Letzte Datenübertragung");
 
 /*********************************************************************
-* allyhistory.php
-**********************************************************************/
-define("ALLYHISTORY_TITLE","OGame Galaxietool - zeitliche Statistiken"); // changed at 4.0
+ * allyhistory.php
+ **********************************************************************/
+define("ALLYHISTORY_TITLE","OGame Galaxytool - zeitliche Statistiken"); // changed at 4.0
 define("ALLYHISTORY_TBLHEAD","Zeitliche Übersicht");
 define("ALLYHISTORY_PLAYERNAME","Spielername");
 define("ALLYHISTORY_ALLYNAME","Allianz");
@@ -660,8 +660,8 @@ define("ALLYHISTORY_MSCORE",STATS_MILITARY);
 
 // new 4.0
 /*********************************************************************
-* playerinformation.php + allyinformation.php
-**********************************************************************/
+ * playerinformation.php + allyinformation.php
+ **********************************************************************/
 define("DETAILEDINFO_PLAYERINFO_TITLE","Spielerinformationen");
 define("DETAILEDINFO_ALLYINFO_TITLE","Allianzinformationen");
 define("DETAILEDINFO_PLAYERINFO_TBLHEAD","Detaillierte Informationen zum Spieler");
@@ -746,17 +746,17 @@ define("DETAILEDINFO_DATE_IN_FUTURE","Bitte keine Zeiten in der Zukunft erfassen
 
 // new 4.2
 /*********************************************************************
-* administration.php
-**********************************************************************/
-define("ADMIN_TITLE","Administration des Galaxietools");
+ * administration.php
+ **********************************************************************/
+define("ADMIN_TITLE","Administration des Galaxytools");
 define("ADMIN_DISCLAMER","Achtung: Das Ausführen dieser Skripte erfolgt auf eigene Gefahr. Die meisten dieser Skripte löschen Daten unwiderruflich!");
-define("ADMIN_INCONSISTENCIES","Inkonsistenzen im Galaxietool");
+define("ADMIN_INCONSISTENCIES","Inkonsistenzen im Galaxytool");
 define("ADMIN_PLANETS","Planeten auf Position 0 oder größer als 15 löschen");
 define("ADMIN_GALAXIES","Galaxien größer als &1 löschen");
 define("ADMIN_PLAYERS","Entferne Spieler ohne OGame ID - führte häufig zu doppelten Spielereinträgen");
 define("ADMIN_REPORTS","Spionageberichte löschen, zu denen kein Planet mehr existiert");
 define("ADMIN_MISC","Sonstiges");
-define("ADMIN_RESET","Reset des Galaxietools (nur Benutzertabelle und IP Tabelle bleiben erhalten!)");
+define("ADMIN_RESET","Reset des Galaxytools (nur Benutzertabelle und IP Tabelle bleiben erhalten!)");
 define("ADMIN_OLD_PLAYERS","Spielereinträge älter als &1 Tage löschen");
 define("ADMIN_OLD_REPORTS","Reports älter als &1 Tage löschen");
 define("ADMIN_LOADING","Fenster erst schließen nachdem die Seite geladen wurde!");
@@ -774,23 +774,23 @@ define("ADMIN_OLD_ACTIVITIES","Entferne Spieleraktivitäten, die älter als &1 T
 define("ADMIN_OLD_COMBATS","Entferne Kampfberichte, die älter als &1 Tage sind");
 define("ADMIN_OLD_INGAME_MSG","Entferne Spielernachrichten, die älter als &1 Tage sind");
 // new 5.0
-define("ADMIN_OGAME_API","Lade verfügbare Daten aus OGame ins Galaxietool");
+define("ADMIN_OGAME_API","Lade verfügbare Daten aus OGame ins Galaxytool");
 define("ADMIN_OGAME_ALL_DATA",ALLYHISTORY_ALL_DATA);
 define("ADMIN_OGAME_GALAXY_DATA",MENU_GALAXYVIEW);
 define("ADMIN_OGAME_STATISTICS_DATA",MENU_STATISTICS);
 
 // new 4.3.5
 /*********************************************************************
-* errorpage.php
-**********************************************************************/
+ * errorpage.php
+ **********************************************************************/
 define("ERRORPAGE_PAGEFORWARD","Sollte der Browser keine Weiterleitung unterstützen, klicke bitte hier.");
 define("ERRORPAGE_PERMISSION_DENIED","Du hast nicht die benötigten Rechte diese Seite zu betreten. Klicke hier um zurück zu gelangen.");
 
 // new 4.7
 /*********************************************************************
-* fleet_movements.php
-**********************************************************************/
-define("FLEETS_TITLE","OGame Galaxietool - Flottenbewegungen");
+ * fleet_movements.php
+ **********************************************************************/
+define("FLEETS_TITLE","OGame Galaxytool - Flottenbewegungen");
 define("FLEETS_ACTUAL_FLEETS","aktuelle Flottenbewegungen");
 define("FLEETS_YES",SHOW_YES);
 define("FLEETS_NO",SHOW_NO);
@@ -812,14 +812,14 @@ define("FLEETS_FLEET","Flotte");
 define("FLEETS_ALL_FLEETS","zeige alle Flottenbewegungen");
 
 /*********************************************************************
-* parser_combat_reports.inc.php
-**********************************************************************/
+ * parser_combat_reports.inc.php
+ **********************************************************************/
 define("COMBAT_REPORT_OUDATED_GALAXYVIEW","Die Galaxieansichten sind veraltet. Bitte zuerst die Galaxieansichten der Angreifer und Verteidiger besuchen.");
 
 /*********************************************************************
-* messages.php
-**********************************************************************/
-define("MESSAGES_TITLE","OGame Galaxietool - OGame Nachrichten");
+ * messages.php
+ **********************************************************************/
+define("MESSAGES_TITLE","OGame Galaxytool - OGame Nachrichten");
 define("MESSAGES_PLAYERNAME","Spielername");
 define("MESSAGES_SUBJECT","Betreff");
 define("MESSAGES_DATE","Datum");
@@ -832,9 +832,9 @@ define("MESSAGES_PLAYER_FILTER","Nachrichten von Spieler:");
 define("MESSAGES_CONTENT","Inhalt");
 
 /*********************************************************************
-* combat_reports.php
-**********************************************************************/
-define("COMBATS_TITLE","OGame Galaxietool - Kampfberichte");
+ * combat_reports.php
+ **********************************************************************/
+define("COMBATS_TITLE","OGame Galaxytool - Kampfberichte");
 define("COMBATS_ATTACKER","Angreifer");
 define("COMBATS_DEFENDER","Verteidiger");
 define("COMBATS_DATE","Datum");
@@ -871,8 +871,8 @@ define("COMBATS_COMBAT_SUMMARY","Kampfberichtszusammenfassung");
 define("COMBATS_DOWNLOAD_CSV","Als CSV Datei herunterladen");
 
 /*********************************************************************
-* report_archive.php
-**********************************************************************/
+ * report_archive.php
+ **********************************************************************/
 define("REPORT_ARCHIVE_TITLE","Scanberichtsarchiv");
 define("REPORT_ARCHIVE_COORDINATES","Koordinaten");
 define("REPORT_ARCHIVE_SCANTIME","Scanzeitpunkt");
@@ -891,9 +891,9 @@ define("REPORT_ARCHIVE_IRAK_RANGE","Interplanetarraketenreichweite");
 define("REPORT_ARCHIVE_CHART_TYPE","Diagrammart");
 
 /*********************************************************************
-* install.php
-**********************************************************************/
-define("INSTALL_TITLE", "Installation der Galaxietool Version");
+ * install.php
+ **********************************************************************/
+define("INSTALL_TITLE", "Installation der Galaxytool Version");
 define("INSTALL_PROGRESS", "Installationsfortschritt");
 define("INSTALL_STEP", "Schritt");
 define("INSTALL_CONTINUE", "Weiter");
@@ -902,15 +902,15 @@ define("INSTALL_STEP1", "Willkommen");
 define("INSTALL_STEP2", "Schreibbarkeitsprüfung");
 define("INSTALL_STEP3", "Datenbankeinstellungen");
 define("INSTALL_STEP4", "OGame Einstellungen");
-define("INSTALL_STEP5", "Galaxietool Einstellungen");
+define("INSTALL_STEP5", "Galaxytool Einstellungen");
 define("INSTALL_STEP6", "Admin Passwort");
-define("INSTALL_STEP7", "Installation des Galaxietools");
+define("INSTALL_STEP7", "Installation des Galaxytools");
 define("INSTALL_STEP8", "Abschluss der Installation"); // check writable; delete install and update.php and redirect to index.php
 define("INSTALL_FILE_DELETE_CHECK","Bitte lösche die install.php und update.php von deinem Webserver.");
 
-define("INSTALL_STEP1_PHP_FAILED", "Deine PHP Version &1 ist nicht kompatibel zu dieser Galaxietoolversion");
+define("INSTALL_STEP1_PHP_FAILED", "Deine PHP Version &1 ist nicht kompatibel zu dieser Galaxytoolversion");
 define("INSTALL_STEP1_FOPEN_FAILED", "Deine PHP Version erlaubt nicht das Öffnen anderer Webseiten mit dem FOPEN() Befehl. Diese Funktionalität wird benötigt um das OGame API zu nutzen.");
-define("INSTALL_STEP1_WELCOME", "Willkommen bei der Installation des Galaxietools. Du wirst schrittweise durch die Installation geführt werden und bei einzelnen Schritten gibt es Links zu weiterführenden Informationen.");
+define("INSTALL_STEP1_WELCOME", "Willkommen bei der Installation des Galaxytools. Du wirst schrittweise durch die Installation geführt werden und bei einzelnen Schritten gibt es Links zu weiterführenden Informationen.");
 
 define("INSTALL_STEP2_DESCRIPTION","Bitte stell sicher, dass die config.php und attributes.php Dateien durch den Webserver beschreibbar sind.");
 define("INSTALL_STEP2_DESCRIPTION2","Solltest du nicht genau wissen wie du die Dateien oder das Verzeichnis fürs Schreiben freigeben kannst, schau bitte hier: &1");
@@ -925,13 +925,13 @@ define("INSTALL_STEP3_ENTER_PREFIX", "z.B. MeinTool1_");
 define("INSTALL_STEP3_ENTER_SERVER", "Server Adresse, frage deinen Systemadministrator falls nötig. Typischerweise ist localhost der korrekte Wert.");
 define("INSTALL_STEP3_ENTER_USERNAME", "Nutzername für den Datenbankzugang");
 define("INSTALL_STEP3_ENTER_PASSWORD", "Passwort für den Datenbankzugang");
-define("INSTALL_STEP3_ENTER_DBNAME", "Name der Datenbank, in die das Galaxietool installiert werden soll. (muss existieren)");
+define("INSTALL_STEP3_ENTER_DBNAME", "Name der Datenbank, in die das Galaxytool installiert werden soll. (muss existieren)");
 define("INSTALL_STEP3_CONNECT_FAILED", "Verbindung zum Datenbankserver konnte nicht hergestellt werden.");
 define("INSTALL_STEP3_DB_FAILED", "Datenbank &1 nicht gefunden");
-define("INSTALL_STEP3_MYSQL_VERSION_FAILED", "MySQL Version &1 ist nicht kompatibel zu dieser Galaxietoolversion");
+define("INSTALL_STEP3_MYSQL_VERSION_FAILED", "MySQL Version &1 ist nicht kompatibel zu dieser Galaxytoolversion");
 
 define("INSTALL_STEP4_URL","OGame URL");
-define("OGAME_URL_DETAILS","Bitte füge hier eine Internetadresse deines OGame Servers ein. Dazu kannst du die Adresse einer beliebigen Seite verwenden, sobald du bei OGame eingeloggt bist. Basierend auf dieser Adresse wird das Galaxietool die OGame API Adresse ableiten, mit der das Galaxietool auch ohne die Galaxietoolbar gefüllt werden kann. Das API wurde mit OGame Version 4.1 eingeführt.");
+define("OGAME_URL_DETAILS","Bitte füge hier eine Internetadresse deines OGame Servers ein. Dazu kannst du die Adresse einer beliebigen Seite verwenden, sobald du bei OGame eingeloggt bist. Basierend auf dieser Adresse wird das Galaxytool die OGame API Adresse ableiten, mit der das Galaxytool auch ohne die Galaxytoolbar gefüllt werden kann. Das API wurde mit OGame Version 4.1 eingeführt.");
 define("INSTALL_STEP4_UNIVERSE","OGame Universum");
 define("INSTALL_STEP4_DEF_TO_DEBRIS","Verteidigung geht ins Trümmerfeld");
 define("INSTALL_STEP4_DEBRIS_RATE","Trümmerfeldrate");
@@ -944,13 +944,13 @@ define("INSTALL_STEP4_URL_CHECK_FAILED","Konnte die OGame APIs nicht finden unte
 // 5.1
 define("INSTALL_STEP4_GETSETTINGS","Einstellungen laden");
 
-define("INSTALL_STEP5_TOOLNAME","Galaxietool Name");
-define("INSTALL_STEP5_ENTER_TOOLNAME","Dieser Name wird auf der Startseite deines Galaxietools zu sehen sein.");
+define("INSTALL_STEP5_TOOLNAME","Galaxytool Name");
+define("INSTALL_STEP5_ENTER_TOOLNAME","Dieser Name wird auf der Startseite deines Galaxytools zu sehen sein.");
 define("INSTALL_STEP5_LANGUAGE","Standardsprache");
 define("INSTALL_STEP5_EMAIL_TO","E-Mail-Empfänger");
 define("INSTALL_STEP5_ENTER_EMAIL_TO","An diese E-Mail-Adresse werden Nachrichten über neu registrierte Mitglieder geschickt.");
 define("INSTALL_STEP5_EMAIL_FROM","Emailabsender");
-define("INSTALL_STEP5_ENTER_EMAIL_FROM","Diese E-Mail-Adresse wird als Absender aller E-Mails des Galaxietools angezeigt");
+define("INSTALL_STEP5_ENTER_EMAIL_FROM","Diese E-Mail-Adresse wird als Absender aller E-Mails des Galaxytools angezeigt");
 define("INSTALL_STEP5_USE_PHPMAILER","Nutze PHPMailer");
 define("INSTALL_STEP5_MAXSHOUTS","Maximale Anzahl von Einträgen in der Nachrichtenbox");
 define("INSTALL_STEP5_ENTER_USE_PHPMAILER","Nutze den PHPMailer falls dein Server keine Unterstützung für das Versenden von E-Mails via PHP hat.");
@@ -962,7 +962,7 @@ define("INSTALL_PHPMAILER_PASS","SMPT Passwort");
 define("INSTALL_PHPMAILER_SECURE","Authentifizierungsmethode, z.B. ssl");
 define("INSTALL_PHPMAILER_PORT","SMTP Port");
 
-define("INSTALL_STEP6_INTRO","Bitte lege ein Passwort für den <strong>admin</strong> Account fest, mit dem du dich nach der Installation am Galaxietool anmelden musst.");
+define("INSTALL_STEP6_INTRO","Bitte lege ein Passwort für den <strong>admin</strong> Account fest, mit dem du dich nach der Installation am Galaxytool anmelden musst.");
 
 define("INSTALL_STEP7_CONFIG","Konfigurationsdatei wurde erzeugt");
 define("INSTALL_STEP7_CONFIG_FAILED","Konfigurationsdatei wurde nicht erzeugt");
@@ -970,26 +970,26 @@ define("INSTALL_STEP7_ATTRIBUTES","Attributdatei wurde erzeugt");
 define("INSTALL_STEP7_ATTRIBUTES_FAILED","Attributdatei wurde nicht erzeugt");
 define("INSTALL_STEP7_CREATED_TABLES","Datenbanktabellen wurde erzeugt");
 
-define("INSTALL_STEP8_INTRO","Du hast die Installation des Galaxietools erfolgreich abgeschlossen!");
+define("INSTALL_STEP8_INTRO","Du hast die Installation des Galaxytools erfolgreich abgeschlossen!");
 define("INSTALL_STEP8_LOAD_DATA","Importieren der OGame Daten via OGame API ...");
 define("INSTALL_STEP8_LOAD_DATA_FINISHED","Import der OGame Daten abgeschlossen");
 define("INSTALL_STEP8_DELETE_FILE","Du solltest jetzt die Installationsdateien install.php sowie update.php von deinem Webserver löschen.");
 define("INSTALL_STEP8_LOGON","Bitte melde dich nun mit dem <strong>admin</strong> Nutzer und dem zuvor festgelegten Passwort an.");
 
 /*********************************************************************
-* update.php
-**********************************************************************/
+ * update.php
+ **********************************************************************/
 define("UPDATE_START","Beginne das Update auf Version &1");
 define("UPDATE_STEP_DONE","Erledigt");
-define("UPDATE_TITLE", "Galaxietoolupdate für Version");
-define("UPDATE_STEP1_WELCOME", "Willkommen beim Updateassistenten für das Galaxietool. Du wirst ab hier durch das Update des Galaxietools geleitet.");
+define("UPDATE_TITLE", "Galaxytoolupdate für Version");
+define("UPDATE_STEP1_WELCOME", "Willkommen beim Updateassistenten für das Galaxytool. Du wirst ab hier durch das Update des Galaxytools geleitet.");
 define("UPDATE_STEP1_BACKUP_FILES", "Erstelle als erstes eine Sicherheitskopie des <strong>config</strong> Verzeichnisses! Im Falle von Fehlern musst du diese jederzeit wiederherstellen können.");
 define("UPDATE_STEP1_BACKUP_DB", "Danach erstelle eine <a href=\"http://doku.wpde.org/Backup_der_Datenbank/phpMyAdmin\">Sicherheitskopie</a> der Datenbankdaten.");
 define("UPDATE_STEP1_PROCEED", "Nachdem alle Sicherheitskopien erzeugt wurden, kann das Update fortgesetzt werden.");
 define("UPDATE_STEP1", INSTALL_STEP1);
 define("UPDATE_STEP2", INSTALL_STEP5);
-define("UPDATE_STEP2_OLD_VERSION", "Vorherige Galaxietool Version");
-define("UPDATE_STEP3", "Update des Galaxietools");
+define("UPDATE_STEP2_OLD_VERSION", "Vorherige Galaxytool Version");
+define("UPDATE_STEP3", "Update des Galaxytools");
 define("UPDATE_STEP3_UPDATE_RUNNING", "Update läuft. Bitte warten...");
 define("UPDATE_STEP4", "Update abschließen");
 define("UPDATE_STEP4_INTRO","Du hast das Update erfolgreich abgeschlossen!");

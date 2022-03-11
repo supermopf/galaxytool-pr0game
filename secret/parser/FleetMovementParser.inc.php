@@ -333,7 +333,7 @@ class FleetMovementParser extends XMLParserGlobal{
 			$this->error_object->add_child_message($this->get_db_error_object());
 			return false;
 		}
-
+        $discord = new Discord();
 		while ($line = $stmt->fetch(PDO::FETCH_OBJ)) {
 			$attacker = $line->attacker;
 			$defender = $line->defender;
@@ -342,7 +342,7 @@ class FleetMovementParser extends XMLParserGlobal{
 			$defendercoords = [$line->destination_galaxy,$line->destination_system,$line->destination_planet];
 			
 			$arrivaltime = $line->arrival_time;
-			if(Discord::SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime)){
+			if($discord->SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime)){
 				$query = "UPDATE `fleet_movements` SET `notification_sent` = 1 WHERE `fleet_id` = ".$line->fleet_id;
 				$stmt = $this->query($query);
 			}

@@ -1,351 +1,354 @@
-define("dojo/dom dijit/registry dojo/on dijit/popup dojo/i18n!./nls/galaxytool.js dojo/domReady!".split(" "), function(w, F, G, J, l) {
+define("dojo/dom dijit/registry dojo/on dijit/popup dojo/i18n!./nls/galaxytool.js dojo/domReady!".split(" "), function (
+    w, F, G, J, lang) {
     function s(a) {
-        if (!0 == a || !1 == a) A = a
+        if (!0 == a || !1 == a) {
+            A = a
+        }
     }
 
-    function H(a) {
+    function HideReportDialog(a) {
         F.byId("ReportDialog").hide();
         p.remove();
         p = null
     }
 
-    function B(a, l, b) {
-        if ("" == a) return console.log("invalid method call - empty link provided"), !1;
-        if (0 < b || "coordinates" == l || "enemy_name" == l) switch (l) {
+    function GenerateSpeedSimURL(url, item, amount) {
+        if ("" === url) return console.log("invalid method call - empty link provided"), !1;
+        if (0 < amount || "coordinates" == item || "enemy_name" == item) switch (item) {
             case "coordinates":
-                a += "enemy_pos=" + b + "&amp;";
+                url += "enemy_pos=" + amount + "&amp;";
                 break;
             case "enemy_name":
-                a += "enemy_name=" + b + "&amp;";
+                url += "enemy_name=" + amount + "&amp;";
                 break;
             case "metal":
-                a += "enemy_metal=" +
-                    b + "&amp;";
+                url += "enemy_metal=" +
+                    amount + "&amp;";
                 break;
             case "crystal":
-                a += "enemy_crystal=" + b + "&amp;";
+                url += "enemy_crystal=" + amount + "&amp;";
                 break;
             case "deuterium":
-                a += "enemy_deut=" + b + "&amp;";
+                url += "enemy_deut=" + amount + "&amp;";
                 break;
             case "kt":
-                a += "ship_d0_0_b=" + b + "&amp;";
+                url += "ship_d0_0_b=" + amount + "&amp;";
                 break;
             case "gt":
-                a += "ship_d0_1_b=" + b + "&amp;";
+                url += "ship_d0_1_b=" + amount + "&amp;";
                 break;
             case "lj":
-                a += "ship_d0_2_b=" + b + "&amp;";
+                url += "ship_d0_2_b=" + amount + "&amp;";
                 break;
             case "sj":
-                a += "ship_d0_3_b=" + b + "&amp;";
+                url += "ship_d0_3_b=" + amount + "&amp;";
                 break;
             case "krz":
-                a += "ship_d0_4_b=" + b + "&amp;";
+                url += "ship_d0_4_b=" + amount + "&amp;";
                 break;
             case "ss":
-                a += "ship_d0_5_b=" + b + "&amp;";
+                url += "ship_d0_5_b=" + amount + "&amp;";
                 break;
             case "kolo":
-                a += "ship_d0_6_b=" + b + "&amp;";
+                url += "ship_d0_6_b=" + amount + "&amp;";
                 break;
             case "rec":
-                a += "ship_d0_7_b=" + b + "&amp;";
+                url += "ship_d0_7_b=" + amount + "&amp;";
                 break;
             case "spio":
-                a += "ship_d0_8_b=" +
-                    b + "&amp;";
+                url += "ship_d0_8_b=" +
+                    amount + "&amp;";
                 break;
             case "bomb":
-                a += "ship_d0_9_b=" + b + "&amp;";
+                url += "ship_d0_9_b=" + amount + "&amp;";
                 break;
             case "sat":
-                a += "ship_d0_10_b=" + b + "&amp;";
+                url += "ship_d0_10_b=" + amount + "&amp;";
                 break;
             case "zerri":
-                a += "ship_d0_11_b=" + b + "&amp;";
+                url += "ship_d0_11_b=" + amount + "&amp;";
                 break;
             case "ds":
-                a += "ship_d0_12_b=" + b + "&amp;";
+                url += "ship_d0_12_b=" + amount + "&amp;";
                 break;
             case "skrz":
-                a += "ship_d0_13_b=" + b + "&amp;";
+                url += "ship_d0_13_b=" + amount + "&amp;";
                 break;
             case "rak":
-                a += "ship_d0_14_b=" + b + "&amp;";
+                url += "ship_d0_14_b=" + amount + "&amp;";
                 break;
             case "ll":
-                a += "ship_d0_15_b=" + b + "&amp;";
+                url += "ship_d0_15_b=" + amount + "&amp;";
                 break;
             case "sl":
-                a += "ship_d0_16_b=" + b + "&amp;";
+                url += "ship_d0_16_b=" + amount + "&amp;";
                 break;
             case "gauss":
-                a += "ship_d0_17_b=" + b + "&amp;";
+                url += "ship_d0_17_b=" + amount + "&amp;";
                 break;
             case "ion":
-                a += "ship_d0_18_b=" + b + "&amp;";
+                url += "ship_d0_18_b=" + amount + "&amp;";
                 break;
             case "plasma":
-                a += "ship_d0_19_b=" +
-                    b + "&amp;";
+                url += "ship_d0_19_b=" +
+                    amount + "&amp;";
                 break;
             case "ksk":
-                a += "ship_d0_20_b=" + b + "&amp;";
+                url += "ship_d0_20_b=" + amount + "&amp;";
                 break;
             case "gsk":
-                a += "ship_d0_21_b=" + b + "&amp;";
+                url += "ship_d0_21_b=" + amount + "&amp;";
                 break;
             case "waffentech":
-                a += "tech_d0_0=" + b + "&amp;";
+                url += "tech_d0_0=" + amount + "&amp;";
                 break;
             case "schildtech":
-                a += "tech_d0_1=" + b + "&amp;";
+                url += "tech_d0_1=" + amount + "&amp;";
                 break;
             case "rpz":
-                a += "tech_d0_2=" + b + "&amp;";
+                url += "tech_d0_2=" + amount + "&amp;";
                 break;
             case "arak":
-                a += "abm_b=" + b + "&amp;";
+                url += "abm_b=" + amount + "&amp;";
                 break;
             case "irak":
-                a += "ipm_b=" + b + "&amp;"
+                url += "ipm_b=" + amount + "&amp;"
         }
-        return a
+        return url
     }
 
-    function C(a, l, b, d, c) {
-        if ("" == a) return console.log("invalid method call - empty link provided"), !1;
+    function GenerateDragoSimURL(url, item, amount, d, c) {
+        if ("" == url) return console.log("invalid method call - empty link provided"), !1;
         d = !0 == d ? 1 : 0;
         c = parseInt(c);
-        switch (l) {
+        switch (item) {
             case "coordinates":
-                a += "v_coords=" +
-                    b + "&amp;";
+                url += "v_coords=" +
+                    amount + "&amp;";
                 break;
             case "enemy_name":
-                a += "v_planet=" + b + "&amp;";
+                url += "v_planet=" + amount + "&amp;";
                 break;
             case "metal":
-                a += "v_met=" + b + "&amp;";
+                url += "v_met=" + amount + "&amp;";
                 break;
             case "crystal":
-                a += "v_kris=" + b + "&amp;";
+                url += "v_kris=" + amount + "&amp;";
                 break;
             case "deuterium":
-                a += "v_deut=" + b + "&amp;";
+                url += "v_deut=" + amount + "&amp;";
                 break;
             case "kt":
-                a += "numunits[" + d + "][" + c + "][k_t]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][k_t]=" + amount + "&amp;";
                 break;
             case "gt":
-                a += "numunits[" + d + "][" + c + "][g_t]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][g_t]=" + amount + "&amp;";
                 break;
             case "lj":
-                a += "numunits[" + d + "][" + c + "][l_j]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][l_j]=" + amount + "&amp;";
                 break;
             case "sj":
-                a += "numunits[" + d + "][" + c + "][s_j]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][s_j]=" + amount + "&amp;";
                 break;
             case "krz":
-                a += "numunits[" + d + "][" + c + "][kr]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][kr]=" + amount + "&amp;";
                 break;
             case "ss":
-                a +=
-                    "numunits[" + d + "][" + c + "][sc]=" + b + "&amp;";
+                url +=
+                    "numunits[" + d + "][" + c + "][sc]=" + amount + "&amp;";
                 break;
             case "kolo":
-                a += "numunits[" + d + "][" + c + "][ko]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][ko]=" + amount + "&amp;";
                 break;
             case "rec":
-                a += "numunits[" + d + "][" + c + "][re]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][re]=" + amount + "&amp;";
                 break;
             case "spio":
-                a += "numunits[" + d + "][" + c + "][sp]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][sp]=" + amount + "&amp;";
                 break;
             case "bomb":
-                a += "numunits[" + d + "][" + c + "][bo]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][bo]=" + amount + "&amp;";
                 break;
             case "sat":
-                a += "numunits[" + d + "][" + c + "][so]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][so]=" + amount + "&amp;";
                 break;
             case "zerri":
-                a += "numunits[" + d + "][" + c + "][z]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][z]=" + amount + "&amp;";
                 break;
             case "ds":
-                a += "numunits[" + d + "][" + c + "][t]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][t]=" + amount + "&amp;";
                 break;
             case "skrz":
-                a += "numunits[" + d + "][" +
-                    c + "][sk]=" + b + "&amp;";
+                url += "numunits[" + d + "][" +
+                    c + "][sk]=" + amount + "&amp;";
                 break;
             case "rak":
-                a += "numunits[" + d + "][" + c + "][ra]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][ra]=" + amount + "&amp;";
                 break;
             case "ll":
-                a += "numunits[" + d + "][" + c + "][l_l]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][l_l]=" + amount + "&amp;";
                 break;
             case "sl":
-                a += "numunits[" + d + "][" + c + "][s_l]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][s_l]=" + amount + "&amp;";
                 break;
             case "gauss":
-                a += "numunits[" + d + "][" + c + "][g]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][g]=" + amount + "&amp;";
                 break;
             case "ion":
-                a += "numunits[" + d + "][" + c + "][i]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][i]=" + amount + "&amp;";
                 break;
             case "plasma":
-                a += "numunits[" + d + "][" + c + "][p]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][p]=" + amount + "&amp;";
                 break;
             case "ksk":
-                a += "numunits[" + d + "][" + c + "][k_s]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][k_s]=" + amount + "&amp;";
                 break;
             case "gsk":
-                a += "numunits[" + d + "][" + c + "][g_s]=" + b + "&amp;";
+                url += "numunits[" + d + "][" + c + "][g_s]=" + amount + "&amp;";
                 break;
             case "waffentech":
-                a += "techs[1][0][w_t]=" + b + "&amp;";
+                url += "techs[1][0][w_t]=" + amount + "&amp;";
                 break;
             case "schildtech":
-                a += "techs[1][0][s_t]=" + b + "&amp;";
+                url += "techs[1][0][s_t]=" + amount + "&amp;";
                 break;
             case "rpz":
-                a += "techs[1][0][r_p]=" + b + "&amp;";
+                url += "techs[1][0][r_p]=" + amount + "&amp;";
                 break;
             case "arak":
-                a += "missiles_available_v=" + b + "&amp;";
+                url += "missiles_available_v=" + amount + "&amp;";
                 break;
             case "irak":
-                a += "missiles_available_a=" + b + "&amp;"
+                url += "missiles_available_a=" + amount + "&amp;"
         }
-        return a
+        return url
     }
 
-    function x(a, l, b, d, c) {
-        if ("" == a) return console.log("invalid method call - empty link provided"), !1;
+    function GenerateOSimulateURL(url, item, amount, d, c) {
+        if ("" == url) return console.log("invalid method call - empty link provided"), !1;
         d = !0 == d ? "d" : "a";
         c = parseInt(c);
-        switch (l) {
+        switch (item) {
             case "coordinates":
-                a += "enemy_pos=" + b + "&amp;";
+                url += "enemy_pos=" + amount + "&amp;";
                 break;
             case "enemy_name":
-                a += "enemy_name=" +
-                    b + "&amp;";
+                url += "enemy_name=" +
+                    amount + "&amp;";
                 break;
             case "metal":
-                a += "enemy_metal=" + b + "&amp;";
+                url += "enemy_metal=" + amount + "&amp;";
                 break;
             case "crystal":
-                a += "enemy_crystal=" + b + "&amp;";
+                url += "enemy_crystal=" + amount + "&amp;";
                 break;
             case "deuterium":
-                a += "enemy_deut=" + b + "&amp;";
+                url += "enemy_deut=" + amount + "&amp;";
                 break;
             case "kt":
-                a += "ship_" + d + c + "_0_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_0_b=" + amount + "&amp;";
                 break;
             case "gt":
-                a += "ship_" + d + c + "_1_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_1_b=" + amount + "&amp;";
                 break;
             case "lj":
-                a += "ship_" + d + c + "_2_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_2_b=" + amount + "&amp;";
                 break;
             case "sj":
-                a += "ship_" + d + c + "_3_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_3_b=" + amount + "&amp;";
                 break;
             case "krz":
-                a += "ship_" + d + c + "_4_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_4_b=" + amount + "&amp;";
                 break;
             case "ss":
-                a += "ship_" + d + c + "_5_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_5_b=" + amount + "&amp;";
                 break;
             case "kolo":
-                a += "ship_" + d + c + "_6_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_6_b=" + amount + "&amp;";
                 break;
             case "rec":
-                a += "ship_" + d + c + "_7_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_7_b=" + amount + "&amp;";
                 break;
             case "spio":
-                a += "ship_" + d + c + "_8_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_8_b=" + amount + "&amp;";
                 break;
             case "bomb":
-                a += "ship_" + d + c + "_9_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_9_b=" + amount + "&amp;";
                 break;
             case "sat":
-                a += "ship_" + d + c + "_10_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_10_b=" + amount + "&amp;";
                 break;
             case "zerri":
-                a += "ship_" + d + c + "_11_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_11_b=" + amount + "&amp;";
                 break;
             case "ds":
-                a += "ship_" + d + c + "_12_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_12_b=" + amount + "&amp;";
                 break;
             case "skrz":
-                a += "ship_" + d + c + "_13_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_13_b=" + amount + "&amp;";
                 break;
             case "rak":
-                a += "ship_" + d + c + "_14_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_14_b=" + amount + "&amp;";
                 break;
             case "ll":
-                a += "ship_" + d + c + "_15_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_15_b=" + amount + "&amp;";
                 break;
             case "sl":
-                a += "ship_" + d + c + "_16_b=" + b +
+                url += "ship_" + d + c + "_16_b=" + amount +
                     "&amp;";
                 break;
             case "gauss":
-                a += "ship_" + d + c + "_17_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_17_b=" + amount + "&amp;";
                 break;
             case "ion":
-                a += "ship_" + d + c + "_18_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_18_b=" + amount + "&amp;";
                 break;
             case "plasma":
-                a += "ship_" + d + c + "_19_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_19_b=" + amount + "&amp;";
                 break;
             case "ksk":
-                a += "ship_" + d + c + "_20_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_20_b=" + amount + "&amp;";
                 break;
             case "gsk":
-                a += "ship_" + d + c + "_21_b=" + b + "&amp;";
+                url += "ship_" + d + c + "_21_b=" + amount + "&amp;";
                 break;
             case "waffentech":
-                a += "tech_" + d + c + "_0=" + b + "&amp;";
+                url += "tech_" + d + c + "_0=" + amount + "&amp;";
                 break;
             case "schildtech":
-                a += "tech_" + d + c + "_1=" + b + "&amp;";
+                url += "tech_" + d + c + "_1=" + amount + "&amp;";
                 break;
             case "rpz":
-                a += "tech_" + d + c + "_2=" + b + "&amp;";
+                url += "tech_" + d + c + "_2=" + amount + "&amp;";
                 break;
             case "arak":
-                a += "abm_b=" + b + "&amp;";
+                url += "abm_b=" + amount + "&amp;";
                 break;
             case "irak":
-                a += "inter=" + b + "&amp;";
+                url += "inter=" + amount + "&amp;";
                 break;
             case "bandit":
-                a += "plunder_perc=" + b + "&amp;"
+                url += "plunder_perc=" + amount + "&amp;"
         }
-        if ("a" == d) switch (l) {
+        if ("a" == d) switch (item) {
             case "vbt":
-                a += "engine" + c + "_0=" + b + "&amp;";
+                url += "engine" + c + "_0=" + amount + "&amp;";
                 break;
             case "impulse":
-                a += "engine" + c + "_1=" + b + "&amp;";
+                url += "engine" + c + "_1=" + amount + "&amp;";
                 break;
             case "hra":
-                a += "engine" + c + "_2=" + b + "&amp;"
+                url += "engine" + c + "_2=" + amount + "&amp;"
         }
-        return a
+        return url
     }
 
-    function I(a) {
-        switch (a) {
+    function GetStorageForShip(ship) {
+        switch (ship) {
             case "kt":
-                return 5E3;
+                return 5000;
             case "gt":
-                return 25E3;
+                return 25000;
             case "lj":
                 return 50;
             case "sj":
@@ -357,213 +360,234 @@ define("dojo/dom dijit/registry dojo/on dijit/popup dojo/i18n!./nls/galaxytool.j
             case "kolo":
                 return 7500;
             case "rec":
-                return 2E4;
+                return 20000;
             case "spio":
-                return 0;
+                return 5;
             case "bomb":
                 return 500;
             case "zerri":
-                return 2E3;
+                return 2000;
             case "ds":
-                return 1E6;
+                return 1000000;
             case "skrz":
                 return 750;
             default:
                 alert("unknown ship key")
         }
     }
+
     var p, A = !1;
-    s.prototype.display = function(a, q, b, d, c, k, t, p, s, e) {
+    s.prototype.display = function (metal, q, SpeedSim, crystal, deut, typearray, t, p, s, html) {
         if (!(!0 != p && !1 != p)) {
-            e = '<div align="center"><table cellpadding="1" cellspacing="0" border="0" style="width:700px;"><tr class="header"><td colspan="4">';
-            e += l.RESOURCES_ON;
-            "" != a && (e += " " + a);
-            a = q.split(":");
-            e += ' <a href="' + ("galaxyview.php?gala=" + a[0] + "&system=" + a[1]) + '">[' + q + "]</a> ";
-            "" != b && (e += " (" + b + ") ");
-            e += l.REPORT_WHEN + " " + k.scantime[0];
-            !1 == A && !1 == p && (e += " ", e += '<a href="report.php?coordinates=' +
-                q + "&moon=" + t + '" target="_blank" style="float:right">', e += '<img src="../images/new_tab.png" border="0" alt="' + l.GENERAL_OPEN_IN_NEW_WINDOW + '" title="' + l.GENERAL_OPEN_IN_NEW_WINDOW + '"></a></img>');
-            e += "</td></tr>";
-            var u;
-            b = "http://websim.speedsim.net/?";
-            b = !0 == galaxytool.Settings.DefToDebris ? b + "def_to_df=1&amp;" : b + "def_to_df=0&amp;";
-            b += "perc-df=" + galaxytool.Settings.DebrisRate + "&amp;";
-            "object" == typeof galaxytool.Settings.UserTechs && (0 < galaxytool.Settings.UserTechs.vbt && (b += "engine0_0=" + galaxytool.Settings.UserTechs.vbt +
-                "&amp;"), 0 < galaxytool.Settings.UserTechs.impulse && (b += "engine0_1=" + galaxytool.Settings.UserTechs.impulse + "&amp;"), 0 < galaxytool.Settings.UserTechs.hra && (b += "engine0_2=" + galaxytool.Settings.UserTechs.hra + "&amp;"), 0 < galaxytool.Settings.UserTechs.waffentech && (b += "tech_a0_0=" + galaxytool.Settings.UserTechs.waffentech + "&amp;"), 0 < galaxytool.Settings.UserTechs.schildtech && (b += "tech_a0_1=" + galaxytool.Settings.UserTechs.schildtech + "&amp;"), 0 < galaxytool.Settings.UserTechs.rpz && (b += "tech_a0_2=" + galaxytool.Settings.UserTechs.rpz +
+            html =
+                '<div align="center"><table cellpadding="1" cellspacing="0" border="0" style="width:700px;"><tr class="header"><td colspan="4">';
+            html += lang.RESOURCES_ON;
+            "" != metal && (html += " " + metal);
+            metal = q.split(":");
+            html += ' <a href="' + ("galaxyview.php?gala=" + metal[0] + "&system=" + metal[1]) + '">[' + q +
+                "]</a> ";
+            "" != SpeedSim && (html += " (" + SpeedSim + ") ");
+            html += lang.REPORT_WHEN + " " + typearray.scantime[0];
+            !1 == A && !1 == p && (html += " ", html += '<a href="report.php?coordinates=' +
+                q + "&moon=" + t + '" target="_blank" style="float:right">', html +=
+                '<img src="../images/new_tab.png" border="0" alt="' + lang.GENERAL_OPEN_IN_NEW_WINDOW +
+                '" title="' + lang.GENERAL_OPEN_IN_NEW_WINDOW + '"></a></img>');
+            html += "</td></tr>";
+            var SpeedSimURL;
+            SpeedSim = "http://websim.speedsim.net/?";
+            SpeedSim = !0 == galaxytool.Settings.DefToDebris ? SpeedSim + "def_to_df=1&amp;" : SpeedSim +
+                "def_to_df=0&amp;";
+            SpeedSim += "perc-df=" + galaxytool.Settings.DebrisRate + "&amp;";
+            "object" == typeof galaxytool.Settings.UserTechs && (0 < galaxytool.Settings.UserTechs.vbt && (
+                SpeedSim += "engine0_0=" + galaxytool.Settings.UserTechs.vbt +
+                    "&amp;"), 0 < galaxytool.Settings.UserTechs.impulse && (SpeedSim += "engine0_1=" +
+                galaxytool.Settings.UserTechs.impulse + "&amp;"), 0 < galaxytool.Settings.UserTechs
+                .hra && (SpeedSim += "engine0_2=" + galaxytool.Settings.UserTechs.hra + "&amp;"), 0 <
+            galaxytool.Settings.UserTechs.waffentech && (SpeedSim += "tech_a0_0=" + galaxytool
+                .Settings.UserTechs.waffentech + "&amp;"), 0 < galaxytool.Settings.UserTechs
+                .schildtech && (SpeedSim += "tech_a0_1=" + galaxytool.Settings.UserTechs.schildtech +
+                "&amp;"), 0 < galaxytool.Settings.UserTechs.rpz && (SpeedSim += "tech_a0_2=" +
+                galaxytool.Settings.UserTechs.rpz +
                 "&amp;"));
             switch (galaxytool.Settings.Language) {
                 case "german":
-                    b += "lang=de&amp;";
+                    SpeedSim += "lang=de&amp;";
                     break;
                 case "polish":
-                    b += "lang=pl&amp;";
+                    SpeedSim += "lang=pl&amp;";
                     break;
                 case "english":
-                    b += "lang=en&amp;";
+                    SpeedSim += "lang=en&amp;";
                     break;
                 case "spanish":
-                    b += "lang=sp&amp;";
+                    SpeedSim += "lang=sp&amp;";
                     break;
                 case "dutch":
-                    b += "lang=nl&amp;";
+                    SpeedSim += "lang=nl&amp;";
                     break;
                 case "balkan":
-                    b += "lang=ba&amp;";
+                    SpeedSim += "lang=ba&amp;";
                     break;
                 case "french":
-                    b += "lang=fr&amp;";
+                    SpeedSim += "lang=fr&amp;";
                     break;
                 case "portugues":
-                    b += "lang=pt&amp;";
+                    SpeedSim += "lang=pt&amp;";
                     break;
                 case "italian":
-                    b += "lang=it&amp;";
+                    SpeedSim += "lang=it&amp;";
                     break;
                 case "turkish":
                     break;
                 case "danish":
-                    b += "lang=dk&amp;";
+                    SpeedSim += "lang=dk&amp;";
                     break;
                 case "brazilian":
-                    b += "lang=pt&amp;";
+                    SpeedSim += "lang=pt&amp;";
                     break;
                 case "russian":
-                    b +=
+                    SpeedSim +=
                         "lang=ru&amp;";
                     break;
                 case "swedish":
-                    b += "lang=sv&amp;";
+                    SpeedSim += "lang=sv&amp;";
                     break;
                 case "greek":
-                    b += "lang=gr&amp;";
+                    SpeedSim += "lang=gr&amp;";
                     break;
                 case "romanian":
-                    b += "lang=ro&amp;";
+                    SpeedSim += "lang=ro&amp;";
                     break;
                 case "hungarian":
-                    b += "lang=hu&amp;";
+                    SpeedSim += "lang=hu&amp;";
                     break;
                 case "czech":
-                    b += "lang=cz&amp;";
+                    SpeedSim += "lang=cz&amp;";
                     break;
                 case "korean":
-                    b += "lang=kr&amp;";
+                    SpeedSim += "lang=kr&amp;";
                     break;
                 case "norwegian":
-                    b += "lang=no&amp;";
+                    SpeedSim += "lang=no&amp;";
                     break;
                 case "taiwan":
-                    b += "lang=tw&amp;";
+                    SpeedSim += "lang=tw&amp;";
                     break;
                 case "japan":
-                    b += "lang=ja&amp;";
+                    SpeedSim += "lang=ja&amp;";
                     break;
                 case "chinese":
-                    b += "lang=cn&amp;";
+                    SpeedSim += "lang=cn&amp;";
                     break;
                 case "bulgarian":
-                    b += "lang=bg&amp;";
+                    SpeedSim += "lang=bg&amp;";
                     break;
                 case "lithuanian":
-                    b += "lang=lt&amp;";
+                    SpeedSim += "lang=lt&amp;";
                     break;
                 case "latvian":
-                    b +=
+                    SpeedSim +=
                         "lang=lv&amp;";
                     break;
                 case "finnish":
-                    b += "lang=fi&amp;";
+                    SpeedSim += "lang=fi&amp;";
                     break;
                 case "slovak":
-                    b += "lang=sk&amp;";
+                    SpeedSim += "lang=sk&amp;";
                     break;
                 case "croatian":
-                    b += "lang=ba&amp;";
+                    SpeedSim += "lang=ba&amp;";
                     break;
                 case "serbian":
                     break;
                 case "slovenian":
-                    b += "lang=si&amp;";
+                    SpeedSim += "lang=si&amp;";
                     break;
                 default:
-                    b += "lang=en&amp;"
+                    SpeedSim += "lang=en&amp;"
             }
-            var g;
-            g = "http://drago-sim.com/?referrer=galaxytool&amp;" + ("debris_ratio=" + galaxytool.Settings.DebrisRate / 100 + "&amp;");
-            !0 == galaxytool.Settings.DefToDebris && (g += "def_tf=0&amp;");
-            "object" == typeof galaxytool.Settings.UserTechs && (0 < galaxytool.Settings.UserTechs.waffentech && (g += "techs[0][0][w_t]=" +
-                galaxytool.Settings.UserTechs.waffentech + "&amp;"), 0 < galaxytool.Settings.UserTechs.schildtech && (g += "techs[0][0][s_t]=" + galaxytool.Settings.UserTechs.schildtech + "&amp;"), 0 < galaxytool.Settings.UserTechs.rpz && (g += "techs[0][0][r_p]=" + galaxytool.Settings.UserTechs.rpz + "&amp;"));
+            var DragoSimURL;
+            DragoSimURL = "http://drago-sim.com/?referrer=galaxytool&amp;" + ("debris_ratio=" + galaxytool
+                .Settings.DebrisRate / 100 + "&amp;");
+
+            galaxytool.Settings.DefToDebris && (DragoSimURL += "def_tf=0&amp;");
+
+            "object" == typeof galaxytool.Settings.UserTechs && (0 < galaxytool.Settings.UserTechs
+                .waffentech && (DragoSimURL += "techs[0][0][w_t]=" +
+                galaxytool.Settings.UserTechs.waffentech + "&amp;"), 0 < galaxytool.Settings
+                .UserTechs.schildtech && (DragoSimURL += "techs[0][0][s_t]=" + galaxytool.Settings
+                .UserTechs.schildtech + "&amp;"), 0 < galaxytool.Settings.UserTechs.rpz && (
+                DragoSimURL += "techs[0][0][r_p]=" + galaxytool.Settings.UserTechs.rpz + "&amp;"));
             switch (galaxytool.Settings.Language) {
                 case "german":
-                    g += "lang=german&amp;";
+                    DragoSimURL += "lang=german&amp;";
                     break;
                 case "polish":
-                    g += "lang=polish&amp;";
+                    DragoSimURL += "lang=polish&amp;";
                     break;
                 case "english":
-                    g += "lang=english&amp;";
+                    DragoSimURL += "lang=english&amp;";
                     break;
                 case "spanish":
-                    g += "lang=spanish&amp;";
+                    DragoSimURL += "lang=spanish&amp;";
                     break;
                 case "dutch":
-                    g += "lang=dutch&amp;";
+                    DragoSimURL += "lang=dutch&amp;";
                     break;
                 case "balkan":
-                    g += "lang=bosnian&amp;";
+                    DragoSimURL += "lang=bosnian&amp;";
                     break;
                 case "french":
-                    g += "lang=french&amp;";
+                    DragoSimURL += "lang=french&amp;";
                     break;
                 case "portugues":
-                    g += "lang=portuguese&amp;";
+                    DragoSimURL += "lang=portuguese&amp;";
                     break;
                 case "italian":
-                    g += "lang=italian&amp;";
+                    DragoSimURL += "lang=italian&amp;";
                     break;
                 case "turkish":
-                    g += "lang=turkish&amp;";
+                    DragoSimURL += "lang=turkish&amp;";
                     break;
                 case "danish":
-                    g += "lang=danish&amp;";
+                    DragoSimURL += "lang=danish&amp;";
                     break;
                 case "brazilian":
-                    g += "lang=brazilian&amp;";
+                    DragoSimURL += "lang=brazilian&amp;";
                     break;
                 case "russian":
-                    g += "lang=russian&amp;";
+                    DragoSimURL += "lang=russian&amp;";
                     break;
                 case "swedish":
-                    g += "lang=swedish&amp;";
+                    DragoSimURL += "lang=swedish&amp;";
                     break;
                 case "greek":
-                    g += "lang=greek&amp;";
+                    DragoSimURL += "lang=greek&amp;";
                     break;
                 case "romanian":
-                    g += "lang=romanian&amp;";
+                    DragoSimURL += "lang=romanian&amp;";
                     break;
                 case "hungarian":
-                    g +=
+                    DragoSimURL +=
                         "lang=hungarian&amp;";
                     break;
                 case "czech":
-                    g += "lang=czech&amp;";
+                    DragoSimURL += "lang=czech&amp;";
                     break;
                 case "korean":
-                    g += "lang=korean&amp;";
+                    DragoSimURL += "lang=korean&amp;";
                     break;
                 case "norwegian":
                     break;
                 case "taiwan":
-                    g += "lang=taiwanese&amp;";
+                    DragoSimURL += "lang=taiwanese&amp;";
                     break;
                 case "japan":
                     break;
                 case "chinese":
                     break;
                 case "bulgarian":
-                    g += "lang=bulgarian&amp;";
+                    DragoSimURL += "lang=bulgarian&amp;";
                     break;
                 case "lithuanian":
                     break;
@@ -572,94 +596,103 @@ define("dojo/dom dijit/registry dojo/on dijit/popup dojo/i18n!./nls/galaxytool.j
                 case "finnish":
                     break;
                 case "slovak":
-                    g += "lang=slovak&amp;";
+                    DragoSimURL += "lang=slovak&amp;";
                     break;
                 case "croatian":
-                    g += "lang=bosnian&amp;";
+                    DragoSimURL += "lang=bosnian&amp;";
                     break;
                 case "serbian":
                     break;
                 case "slovenian":
                     break;
                 default:
-                    g += "lang=english&amp;"
+                    DragoSimURL += "lang=english&amp;"
             }
-            var f;
-            f =
+            let OSimulateURL;
+            OSimulateURL =
                 "http://www.osimulate.com/?" + ("perc-df=" + galaxytool.Settings.DebrisRate + "&amp;");
-            !0 == galaxytool.Settings.DefToDebris && (f += "defense_debris=30&amp;");
-            f += "uni_speed=" + galaxytool.Settings.SpeedRate + "&amp;";
-            "object" == typeof galaxytool.Settings.UserTechs && (0 < galaxytool.Settings.UserTechs.waffentech && (f += "tech_a0_0=" + galaxytool.Settings.UserTechs.waffentech + "&amp;"), 0 < galaxytool.Settings.UserTechs.schildtech && (f += "tech_a0_1=" + galaxytool.Settings.UserTechs.schildtech + "&amp;"), 0 < galaxytool.Settings.UserTechs.rpz &&
-                (f += "tech_a0_2=" + galaxytool.Settings.UserTechs.rpz + "&amp;"), 0 < galaxytool.Settings.UserTechs.vbt && (f += "engine_0=" + galaxytool.Settings.UserTechs.vbt + "&amp;"), 0 < galaxytool.Settings.UserTechs.impulse && (f += "engine_1=" + galaxytool.Settings.UserTechs.impulse + "&amp;"), 0 < galaxytool.Settings.UserTechs.hra && (f += "engine_2=" + galaxytool.Settings.UserTechs.hra + "&amp;"));
+            !0 == galaxytool.Settings.DefToDebris && (OSimulateURL += "defense_debris=30&amp;");
+            OSimulateURL += "uni_speed=" + galaxytool.Settings.SpeedRate + "&amp;";
+            "object" == typeof galaxytool.Settings.UserTechs && (0 < galaxytool.Settings.UserTechs
+                .waffentech && (OSimulateURL += "tech_a0_0=" + galaxytool.Settings.UserTechs.waffentech +
+                "&amp;"), 0 < galaxytool.Settings.UserTechs.schildtech && (OSimulateURL +=
+                "tech_a0_1=" + galaxytool.Settings.UserTechs.schildtech + "&amp;"), 0 < galaxytool
+                .Settings.UserTechs.rpz &&
+            (OSimulateURL += "tech_a0_2=" + galaxytool.Settings.UserTechs.rpz + "&amp;"), 0 <
+            galaxytool.Settings.UserTechs.vbt && (OSimulateURL += "engine_0=" + galaxytool.Settings
+                .UserTechs.vbt + "&amp;"), 0 < galaxytool.Settings.UserTechs.impulse && (
+                OSimulateURL += "engine_1=" + galaxytool.Settings.UserTechs.impulse + "&amp;"), 0 <
+            galaxytool.Settings.UserTechs.hra && (OSimulateURL += "engine_2=" + galaxytool.Settings
+                .UserTechs.hra + "&amp;"));
             switch (galaxytool.Settings.Language) {
                 case "german":
-                    f += "lang=de&amp;";
+                    OSimulateURL += "lang=de&amp;";
                     break;
                 case "polish":
-                    f += "lang=pl&amp;";
+                    OSimulateURL += "lang=pl&amp;";
                     break;
                 case "english":
-                    f += "lang=gb&amp;";
+                    OSimulateURL += "lang=gb&amp;";
                     break;
                 case "spanish":
-                    f += "lang=es&amp;";
+                    OSimulateURL += "lang=es&amp;";
                     break;
                 case "dutch":
-                    f += "lang=nl&amp;";
+                    OSimulateURL += "lang=nl&amp;";
                     break;
                 case "balkan":
-                    f += "lang=ba&amp;";
+                    OSimulateURL += "lang=ba&amp;";
                     break;
                 case "french":
-                    f += "lang=fr&amp;";
+                    OSimulateURL += "lang=fr&amp;";
                     break;
                 case "portugues":
-                    f += "lang=pt&amp;";
+                    OSimulateURL += "lang=pt&amp;";
                     break;
                 case "italian":
-                    f += "lang=it&amp;";
+                    OSimulateURL += "lang=it&amp;";
                     break;
                 case "turkish":
-                    f += "lang=tr&amp;";
+                    OSimulateURL += "lang=tr&amp;";
                     break;
                 case "danish":
-                    f += "lang=dk&amp;";
+                    OSimulateURL += "lang=dk&amp;";
                     break;
                 case "brazilian":
-                    f += "lang=br&amp;";
+                    OSimulateURL += "lang=br&amp;";
                     break;
                 case "russian":
-                    f += "lang=ru&amp;";
+                    OSimulateURL += "lang=ru&amp;";
                     break;
                 case "swedish":
-                    f += "lang=se&amp;";
+                    OSimulateURL += "lang=se&amp;";
                     break;
                 case "greek":
-                    f += "lang=gr&amp;";
+                    OSimulateURL += "lang=gr&amp;";
                     break;
                 case "romanian":
-                    f += "lang=ro&amp;";
+                    OSimulateURL += "lang=ro&amp;";
                     break;
                 case "hungarian":
-                    f += "lang=hu&amp;";
+                    OSimulateURL += "lang=hu&amp;";
                     break;
                 case "czech":
-                    f += "lang=cz&amp;";
+                    OSimulateURL += "lang=cz&amp;";
                     break;
                 case "korean":
-                    f += "lang=kr&amp;";
+                    OSimulateURL += "lang=kr&amp;";
                     break;
                 case "norwegian":
                     break;
                 case "taiwan":
-                    f += "lang=tw&amp;";
+                    OSimulateURL += "lang=tw&amp;";
                     break;
                 case "japan":
                     break;
                 case "chinese":
                     break;
                 case "bulgarian":
-                    f += "lang=bg&amp;";
+                    OSimulateURL += "lang=bg&amp;";
                     break;
                 case "lithuanian":
                     break;
@@ -668,171 +701,266 @@ define("dojo/dom dijit/registry dojo/on dijit/popup dojo/i18n!./nls/galaxytool.j
                 case "finnish":
                     break;
                 case "slovak":
-                    f += "lang=sk&amp;";
+                    OSimulateURL += "lang=sk&amp;";
                     break;
                 case "croatian":
-                    f += "lang=hr&amp;";
+                    OSimulateURL += "lang=hr&amp;";
                     break;
                 case "serbian":
                     break;
                 case "slovenian":
                     break;
                 default:
-                    f += "lang=gb&amp;"
+                    OSimulateURL += "lang=gb&amp;"
             }
-            u = B(b, "coordinates", q);
-            g = C(g, "coordinates", q, !1, 0);
-            f = x(f, "coordinates", q, !1, 0);
+            SpeedSimURL = GenerateSpeedSimURL(SpeedSim, "coordinates", q);
+            DragoSimURL = GenerateDragoSimURL(DragoSimURL, "coordinates", q, !1, 0);
+            OSimulateURL = GenerateOSimulateURL(OSimulateURL, "coordinates", q, !1, 0);
             var y = 0,
                 n = !1,
                 v = 0,
                 z = 0;
-            b = !1;
-            for (var h in k)
-                if ("bandit" == h) b = k[h], "true" == b && (f = x(f, h, "100", !1, 0)), b = !1;
-                else if (!("id" == h || "msg_id" == h || "res_sum" == h || "fleet_sum" == h || "def_sum" == h || "scantime" == h || "planetname" == h || "playername" == h || "details" == h || "username" == h))
-                if ("h1" == h || "h2" == h || "h3" == h || "h4" == h || "h5" == h) !0 == n && (e += '<td colspan="2">&nbsp;</td>', e += "</tr>"), e += '<tr class="header ' + ("ok" == k[h][0] ? "truespio" : "falsespio") + '"><td colspan="4">' + k[h][1] +
-                    "</td></tr>", y = 0;
-                else {
-                    if ("kt" == h || "gt" == h || "lj" == h || "sj" == h || "krz" == h || "ss" == h || "kolo" == h || "rec" == h || "bomb" == h || "zerri" == h || "ds" == h || "skrz" == h) 0 < k[h][0] && (v += I(h) * k[h][0]);
-                    if ("metal" == h || "crystal" == h || "deuterium" == h) z += parseInt(k[h][0]);
-                    var D = k[h][0];
-                    if (!isNaN(parseFloat(k[h][0])) && isFinite(k[h][0])) {
-                        if (0 == k[h][0] && "metal" != h && "crystal" != h && "deuterium" != h && "energy" != h) continue;
-                        u = B(u, h, k[h][0]);
-                        g = C(g, h, k[h][0], !0, 0);
-                        f = x(f, h, k[h][0], !0, 0)
-                    }
-                    var r = "";
-                    if ("metal" == h || "crystal" == h || "deuterium" == h) {
-                        n = null;
-                        switch (h) {
-                            case "metal":
-                                n = "mesp";
-                                break;
-                            case "crystal":
-                                n = "krissp";
-                                break;
-                            case "deuterium":
-                                n = "deutsp"
+            SpeedSim = !1;
+            for (var type in typearray) {
+                if ("bandit" === type) {
+                    SpeedSim = typearray[type], "true" === SpeedSim && (OSimulateURL = GenerateOSimulateURL(
+                        OSimulateURL, type, "100", !1, 0)), SpeedSim = !1;
+                } else if (!(
+                    "id" == type ||
+                    "msg_id" == type ||
+                    "res_sum" == type ||
+                    "fleet_sum" == type ||
+                    "def_sum" == type ||
+                    "scantime" == type ||
+                    "planetname" == type ||
+                    "playername" == type ||
+                    "details" == type ||
+                    "username" == type)) {
+                    if ("h1" == type || "h2" == type || "h3" == type || "h4" == type || "h5" == type) {
+                        !0 == n && (html += '<td colspan="2">&nbsp;</td>', html += "</tr>"), html +=
+                            '<tr class="header ' + ("ok" == typearray[type][0] ? "truespio" : "falsespio") +
+                            '"><td colspan="4">' + typearray[type][1] +
+                            "</td></tr>", y = 0;
+                    } else {
+                        if ("kt" == type || "gt" == type || "lj" == type || "sj" == type || "krz" == type ||
+                            "ss" == type || "kolo" == type || "rec" == type || "bomb" == type || "zerri" ==
+                            type || "ds" == type || "skrz" == type) 0 < typearray[type][0] && (v +=
+                            GetStorageForShip(type) * typearray[type][0]);
+                        if ("metal" == type || "crystal" == type || "deuterium" == type) {
+                            z += parseInt(typearray[type][0]);
                         }
-                        var E = 0;
-                        try {
-                            E = k[n][0]
-                        } catch (w) {
-                            alert(w)
+                        var D = typearray[type][0];
+                        if (!isNaN(parseFloat(typearray[type][0])) && isFinite(typearray[type][0])) {
+                            if (0 == typearray[type][0] && "metal" != type && "crystal" != type &&
+                                "deuterium" != type && "energy" != type) continue;
+                            SpeedSimURL = GenerateSpeedSimURL(SpeedSimURL, type, typearray[type][0]);
+                            DragoSimURL = GenerateDragoSimURL(DragoSimURL, type, typearray[type][0], !0, 0);
+                            OSimulateURL = GenerateOSimulateURL(OSimulateURL, type, typearray[type][0], !0, 0)
                         }
-                        "ok" == k.h4[0] && !t && (n = 5E3 * Math.floor(2.5 * Math.pow(Math.E, 20 * E / 33)), n <= D ? r = 'class="traffic_light_red"' : 0.9 * n <= D && (r = 'class="traffic_light_yellow"'))
+                        var r = "";
+                        if ("metal" == type || "crystal" == type || "deuterium" == type) {
+                            n = null;
+                            switch (type) {
+                                case "metal":
+                                    n = "mesp";
+                                    break;
+                                case "crystal":
+                                    n = "krissp";
+                                    break;
+                                case "deuterium":
+                                    n = "deutsp"
+                            }
+                            var E = 0;
+                            try {
+                                E = typearray[n][0]
+                            } catch (w) {
+                                alert(w)
+                            }
+                            "ok" == typearray.h4[0] && !t && (n = 5E3 * Math.floor(2.5 * Math.pow(Math.E,
+                                20 * E / 33)), n <= D ? r = 'class="traffic_light_red"' : 0.9 * n <=
+                                D && (r = 'class="traffic_light_yellow"'))
+                        }
+                        0 == y % 2 ? (n = !0, html += "<tr>", html += '<td style="padding-left:20px;">' +
+                            typearray[type][1] +
+                            '</td><td style="padding-left:10px; padding-right:20px;" ' + r + ">" +
+                            galaxytool.General.numberFormat(typearray[type][0]) + "</td>") : (n = !1,
+                            html += '<td style="padding-left:20px;">' +
+                                typearray[type][1] +
+                                '</td><td style="padding-left:10px; padding-right:20px;" ' + r + ">" +
+                                galaxytool.General.numberFormat(typearray[type][0]) + "</td>", html +=
+                            "</tr>");
+                        y++
                     }
-                    0 == y % 2 ? (n = !0, e += "<tr>", e += '<td style="padding-left:20px;">' + k[h][1] + '</td><td style="padding-left:10px; padding-right:20px;" ' + r + ">" + galaxytool.General.numberFormat(k[h][0]) + "</td>") : (n = !1, e += '<td style="padding-left:20px;">' +
-                        k[h][1] + '</td><td style="padding-left:10px; padding-right:20px;" ' + r + ">" + galaxytool.General.numberFormat(k[h][0]) + "</td>", e += "</tr>");
-                    y++
-                }! 0 == n && (e += '<td colspan="2">&nbsp;</td>', e += "</tr>");
-            "" != c && null !== c && (e += '<tr class="header"><td colspan="4">' + d + " " + c + "</td></tr>");
-            e += '<tr class="header"><td colspan="1"><a target="speedsim" href="' + u + '">' + l.REPORTS_SPEEDSIM + "</a></td>";
-            e += '<td colspan="2"><a target="dragosim" href="' + g + '">' + l.REPORTS_DRAGOSIM + "</a></td>";
-            e += '<td colspan="1"><a target="OSimulate" href="' +
-                f + '">' + l.REPORTS_OSIMULATE + "</a></td></tr>";
-            e += '<tr><td colspan="2" style="padding-left:20px;">' + l.REPORTS_ALL_RESOURCES + "</td>";
-            e += '<td style="padding-left:20px;" colspan="2">' + galaxytool.General.numberFormat(z) + "</tr>";
-            "ok" == k.h2[0] && (r = v < k.res_sum[0] ? 'class="traffic_light_red"' : "", e += '<tr><td colspan="2" style="padding-left:20px;">' + l.REPORT_ARCHIVE_FLEET_CARGO + "</td>", e += '<td style="padding-left:20px;" colspan="2" ' + r + ">" + galaxytool.General.numberFormat(v) + "</tr>");
-            "ok" == k.h4[0] && (!0 == t && 0 < k.sensor[0]) &&
-                (e += '<tr><td colspan="2" style="padding-left:20px;">' + l.DETAILEDINFO_PHALANX_AREA + "</td>", d = parseInt(a[1]) - (Math.pow(k.sensor[0], 2) - 1), 0 > d && (d = 1), c = parseInt(a[1]) + (Math.pow(k.sensor[0], 2) - 1), 499 < c && (c = 499), h = "galaxyview.php?gala=" + a[0] + "&system=" + d, g = "galaxyview.php?gala=" + a[0] + "&system=" + c, e += '<td style="padding-left:20px;" colspan="2"><a href="' + h + '">' + a[0] + ":" + d + "</a>", e += ' - <a href="' + g + '">' + a[0] + ":" + c + "</a></tr>");
-            "ok" == k.h5[0] && (0 < k.impulse[0] && !1 == t && 3 < k.raksilo[0]) && (e += '<tr><td colspan="2" style="padding-left:20px;">' +
-                l.REPORT_ARCHIVE_IRAK_RANGE + "</td>", d = parseInt(a[1]) - (5 * k.impulse[0] - 1), 0 > d && (d = 1), c = parseInt(a[1]) + (5 * k.impulse[0] - 1), 499 < c && (c = 499), h = "galaxyview.php?gala=" + a[0] + "&system=" + d, g = "galaxyview.php?gala=" + a[0] + "&system=" + c, e += '<td style="padding-left:20px;" colspan="2"><a href="' + h + '">' + a[0] + ":" + d + "</a>", e += ' - <a href="' + g + '">' + a[0] + ":" + c + "</a></tr>");
-            e += '<tr><td colspan="2" style="padding-left:20px; vertical-align:text-top;">' + l.REPORTS_FOR_ALL_RES + "</td>";
-            a = k.metal[0];
-            d = k.crystal[0];
-            c = k.deuterium[0];
-            a = parseInt(a);
-            d = parseInt(d);
-            c = parseInt(c);
-            b = !0 != b ? !1 : !0;
-            !(0 > a) && !(0 > d) && !(0 > c) ? (g = !0 == b ? 1 : 2, h = Math.ceil(Math.max(a + d + c, Math.min(0.75 * (2 * a + d + c), 2 * a + c)) / (5E3 * g)), b = Math.ceil(Math.max(a + d + c, Math.min(0.75 * (2 * a + d + c), 2 * a + c)) / (25E3 * g)), a = Math.ceil(Math.max(a + d + c, Math.min(0.75 * (2 * a + d + c), 2 * a + c)) / (1500 * g)), d = l.REPORTS_KT + ": " + galaxytool.General.numberFormat(h) + "<br />", d += l.REPORTS_GT + ": " + galaxytool.General.numberFormat(b) + "<br />", a = d += l.REPORTS_SS + ": " + galaxytool.General.numberFormat(a) + "<br />") : a = void 0;
-            e += '<td colspan="2" style="padding-left:20px;">' + a + "</td></tr>";
-            a = 0;
-            b = !0 == galaxytool.Settings.DefToDebris ? 1 : 0;
-            for (var m in k) switch (m) {
+                }
+            }
+            !0 == n && (html += '<td colspan="2">&nbsp;</td>', html += "</tr>");
+            "" != deut && null !== deut && (html += '<tr class="header"><td colspan="4">' + crystal + " " + deut +
+                "</td></tr>");
+
+            html += '<tr class="header"><td colspan="1"><a target="speedsim" href="' + SpeedSimURL + '">' +
+                lang.REPORTS_SPEEDSIM + "</a></td>";
+
+            html += '<td colspan="2"><a target="dragosim" href="' + DragoSimURL + '">' + lang.REPORTS_DRAGOSIM +
+                "</a></td>";
+
+            html += '<td colspan="1"><a target="OSimulate" href="' +
+                OSimulateURL + '">' + lang.REPORTS_OSIMULATE + "</a></td></tr>";
+
+            html += '<tr><td colspan="2" style="padding-left:20px;">' + lang.REPORTS_ALL_RESOURCES + "</td>";
+
+            html += '<td style="padding-left:20px;" colspan="2">' + galaxytool.General.numberFormat(z) +
+                "</tr>";
+
+            "ok" == typearray.h2[0] && (r = v < typearray.res_sum[0] ? 'class="traffic_light_red"' : "",
+                html += '<tr><td colspan="2" style="padding-left:20px;">' + lang
+                    .REPORT_ARCHIVE_FLEET_CARGO + "</td>", html +=
+                '<td style="padding-left:20px;" colspan="2" ' + r + ">" + galaxytool.General
+                    .numberFormat(v) + "</tr>");
+
+            "ok" == typearray.h4[0] && (!0 == t && 0 < typearray.sensor[0]) &&
+            (html += '<tr><td colspan="2" style="padding-left:20px;">' + lang.DETAILEDINFO_PHALANX_AREA +
+                "</td>", crystal = parseInt(metal[1]) - (Math.pow(typearray.sensor[0], 2) - 1), 0 > crystal && (crystal = 1),
+                deut = parseInt(metal[1]) + (Math.pow(typearray.sensor[0], 2) - 1), 499 < deut && (deut = 499),
+                type = "galaxyview.php?gala=" + metal[0] + "&system=" + crystal, DragoSimURL =
+                "galaxyview.php?gala=" + metal[0] + "&system=" + deut, html +=
+                '<td style="padding-left:20px;" colspan="2"><a href="' + type + '">' + metal[0] + ":" + crystal +
+                "</a>", html += ' - <a href="' + DragoSimURL + '">' + metal[0] + ":" + deut + "</a></tr>");
+
+            "ok" == typearray.h5[0] && (0 < typearray.impulse[0] && !1 == t && 3 < typearray.raksilo[0]) &&
+            (html += '<tr><td colspan="2" style="padding-left:20px;">' +
+                lang.REPORT_ARCHIVE_IRAK_RANGE + "</td>", crystal = parseInt(metal[1]) - (5 * typearray.impulse[0] -
+                1), 0 > crystal && (crystal = 1), deut = parseInt(metal[1]) + (5 * typearray.impulse[0] - 1), 499 <
+            deut && (deut = 499), type = "galaxyview.php?gala=" + metal[0] + "&system=" + crystal, DragoSimURL =
+                "galaxyview.php?gala=" + metal[0] + "&system=" + deut, html +=
+                '<td style="padding-left:20px;" colspan="2"><a href="' + type + '">' + metal[0] + ":" + crystal +
+                "</a>", html += ' - <a href="' + DragoSimURL + '">' + metal[0] + ":" + deut + "</a></tr>");
+
+
+            //Für alle raidbaren Ressourcen
+
+            html += '<tr><td colspan="2" style="padding-left:20px; vertical-align:text-top;">' + lang
+                .REPORTS_FOR_ALL_RES + "</td>";
+
+            metal = typearray.metal[0];
+            crystal = typearray.crystal[0];
+            deut = typearray.deuterium[0];
+
+            metal = parseInt(metal);
+            crystal = parseInt(crystal);
+            deut = parseInt(deut);
+
+            SpeedSim = true != SpeedSim ? !1 : !0;
+
+
+            if (!(0 > metal) && !(0 > crystal) && !(0 > deut)) {
+                DragoSimURL = !0 == SpeedSim ? 1 : 2;
+                    type = Math.ceil(Math.max(metal + crystal + deut, Math.min(0.75 * (2 * metal + crystal + deut), 2 * metal + deut)) / (5E3 * DragoSimURL));
+
+                    SpeedSim = Math.ceil(Math.max(metal + crystal + deut, Math.min(0.75 * (2 * metal + crystal + deut), 2 * metal + deut)) / (25E3 * DragoSimURL));
+
+                    metal = Math.ceil(Math.max(metal + crystal + deut, Math.min(0.75 * (2 * metal + crystal + deut), 2 * metal + deut)) / (1500 * DragoSimURL))
+
+                    crystal = lang.REPORTS_KT + ": " + galaxytool.General.numberFormat(type) + "<br />";
+                    crystal += lang.REPORTS_GT + ": " + galaxytool.General.numberFormat(SpeedSim) + "<br />";
+                    metal = crystal += lang.REPORTS_SS + ": " + galaxytool.General.numberFormat(metal) + "<br />";
+            } else {
+                metal = void 0;
+            }
+
+
+            html += '<td colspan="2" style="padding-left:20px;">' + metal + "</td></tr>";
+
+            //Debris Calc
+            let DebrisTotal = 0;
+            let DefToDebris = (galaxytool.Settings.DefToDebris ? 1 : 0);
+            for (var typearrayKey in typearray) switch (typearrayKey) {
                 case "kt":
-                    a += 1200 * k[m][0];
+                    DebrisTotal += 1200 * typearray[typearrayKey][0];
                     break;
                 case "gt":
-                    a += 3600 * k[m][0];
+                    DebrisTotal += 3600 * typearray[typearrayKey][0];
                     break;
                 case "lj":
-                    a += 1200 * k[m][0];
+                    DebrisTotal += 1200 * typearray[typearrayKey][0];
                     break;
                 case "sj":
-                    a += 3E3 * k[m][0];
+                    DebrisTotal += 3E3 * typearray[typearrayKey][0];
                     break;
                 case "krz":
-                    a += 8100 * k[m][0];
+                    DebrisTotal += 8100 * typearray[typearrayKey][0];
                     break;
                 case "ss":
-                    a += 18E3 * k[m][0];
+                    DebrisTotal += 18E3 * typearray[typearrayKey][0];
                     break;
                 case "kolo":
-                    a += 9E3 * k[m][0];
+                    DebrisTotal += 9E3 * typearray[typearrayKey][0];
                     break;
                 case "rec":
-                    a += 4800 * k[m][0];
+                    DebrisTotal += 4800 * typearray[typearrayKey][0];
                     break;
                 case "spio":
-                    a += 300 * k[m][0];
+                    DebrisTotal += 300 * typearray[typearrayKey][0];
                     break;
                 case "bomb":
-                    a += 22500 * k[m][0];
+                    DebrisTotal += 22500 * typearray[typearrayKey][0];
                     break;
                 case "sat":
-                    a += 600 * k[m][0];
+                    DebrisTotal += 600 * typearray[typearrayKey][0];
                     break;
                 case "zerri":
-                    a +=
-                        33E3 * k[m][0];
+                    DebrisTotal += 33E3 * typearray[typearrayKey][0];
                     break;
                 case "ds":
-                    a += 27E5 * k[m][0];
+                    DebrisTotal += 27E5 * typearray[typearrayKey][0];
                     break;
                 case "skrz":
-                    a += 21E3 * k[m][0];
+                    DebrisTotal += 21E3 * typearray[typearrayKey][0];
                     break;
                 case "rak":
-                    a += 600 * k[m][0] * b;
+                    DebrisTotal += 600 * typearray[typearrayKey][0] * DefToDebris;
                     break;
                 case "ll":
-                    a += 600 * k[m][0] * b;
+                    DebrisTotal += 600 * typearray[typearrayKey][0] * DefToDebris;
                     break;
                 case "sl":
-                    a += 2400 * k[m][0] * b;
+                    DebrisTotal += 2400 * typearray[typearrayKey][0] * DefToDebris;
                     break;
                 case "gauss":
-                    a += 10500 * k[m][0] * b;
+                    DebrisTotal += 10500 * typearray[typearrayKey][0] * DefToDebris;
                     break;
                 case "ion":
-                    a += 2400 * k[m][0] * b;
+                    DebrisTotal += 2400 * typearray[typearrayKey][0] * DefToDebris;
                     break;
                 case "plasma":
-                    a += 3E4 * k[m][0] * b;
+                    DebrisTotal += 3E4 * typearray[typearrayKey][0] * DefToDebris;
                     break;
                 case "ksk":
-                    a += 6E3 * k[m][0] * b;
+                    DebrisTotal += 6E3 * typearray[typearrayKey][0] * DefToDebris;
                     break;
                 case "gsk":
-                    a += 3E4 * k[m][0] * b
+                    DebrisTotal += 3E4 * typearray[typearrayKey][0] * DefToDebris
             }
-            k = a;
-            m = Math.ceil(k / 2E4);
-            e += '<tr><td colspan="2" style="padding-left:20px; vertical-align:text-top;">' + l.SHOW_DF_LONG + "</td>";
-            e += '<td colspan="2" style="padding-left:20px;">' +
-                galaxytool.General.numberFormat(k) + " ( " + m + " " + l.REPORTS_REC + ")</td></tr>";
-            !1 == p && (e += '<tr class="header"><td colspan="4"><a href="report_archive.php?coordinates=' + q + "&moon=" + t + '">' + s + "</a></td></tr>");
-            return e += "</table></div>"
+
+            let RecyclerNeeded = Math.ceil(DebrisTotal / 20000);
+
+            html += '<tr><td colspan="2" style="padding-left:20px; vertical-align:text-top;">' + lang.SHOW_DF_LONG +
+                    "</td>";
+
+            html += '<td colspan="2" style="padding-left:20px;">' +
+                    galaxytool.General.numberFormat(DebrisTotal) +
+                    " ( " + RecyclerNeeded + " " + lang.REPORTS_REC + ")</td></tr>";
+
+            html += '<tr class="header"><td colspan="4"><a href="report_archive.php?coordinates=' + q +
+                    "&moon=" + t + '">' + s + "</a></td></tr>";
+
+            html += "</table></div>";
+            return html;
         }
     };
-    s.prototype.addReportClickAndCloseListener = function() {
+    s.prototype.addReportClickAndCloseListener = function () {
         if (null == p) {
             var a = w.byId("ReportDialog_underlay");
-            p = G(a, "click", H)
+            p = G(a, "click", HideReportDialog)
         }
     };
     return s
