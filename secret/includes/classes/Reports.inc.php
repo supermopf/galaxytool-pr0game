@@ -296,9 +296,13 @@ class Reports extends GenericSuperclass {
 		    array_push($wheres, "(r.metal+r.crystal+r.deuterium ".$param["all_resources"][1]." '".$param['all_resources'][0]."')");
         }
 		//if ($param['fleet_resis'][0] > 0) array_push($wheres, "(fleet_resis < '".$param['fleet_resis'][0]."')");
-		if ($param['fleet_resis'][0] > 0) $param['fleet_resis'][0] *= 1000;
+		if ($param['fleet_resis'][0] > 0){
+            $param['fleet_resis'][0] *= 1000;
+        }
 		//if ($param['defence_resis'][0] > 0) array_push($wheres, "(defence_resis < '".$param['defence_resis'][0]."')");
-		if ($param['defence_resis'][0] > 0) $param['defence_resis'][0] *= 1000;
+		if ($param['defence_resis'][0] > 0){
+            $param['defence_resis'][0] *= 1000;
+        }
 
 	    $parameter = array(
 		    array("metal","crystal","deuterium","energy"),
@@ -306,7 +310,7 @@ class Reports extends GenericSuperclass {
 			array("rak","ll","sl","ion","gauss","plasma","ksk","gsk","arak","irak"),
 			array("memi","krimi","deutsyn","solar","fusion","robo","nani","rawe","mesp","krissp","deutsp","folab","terra","allydep","raksilo","mbase","sensor","sprungtor"),
 			array("spiolvl","computech","waffentech","schildtech","rpz","energytech","hypertech","vbt","impulse","hra","lasertech","iontech","plasmatech","forschungsnetz","expedition","gravi"),
-			array("fleet_resis","defence_resis")
+			array("fleet_resis","defence_resis","points")
 		);
 		
 		
@@ -316,9 +320,13 @@ class Reports extends GenericSuperclass {
 				if ($sign != ">=" && $sign != "=" && $sign != "<=") exit("possible SQL injection");
 				
 				if ($index > 4) {
-					array_push($wheres, "$key_name $sign '".$param[$key_name][0]."'");
+                    if($key_name == "points"){
+                        array_push($wheres, "p.$key_name $sign '".$param[$key_name][0]."'");
+                    }else{
+                        array_push($wheres, "$key_name $sign '".$param[$key_name][0]."'");
+                    }
 				} else {
-					array_push($wheres, "r.$key_name $sign '".$param[$key_name][0]."'");
+                    array_push($wheres, "r.$key_name $sign '".$param[$key_name][0]."'");
 				}
 			}
 		}
@@ -456,7 +464,7 @@ class Reports extends GenericSuperclass {
 			array("memi","krimi","deutsyn","solar","fusion","robo","nani","rawe","mesp","krissp","deutsp","folab","terra","allydep","raksilo","mbase","sensor","sprungtor"),
 			array("spiolvl","computech","waffentech","schildtech","rpz","energytech","hypertech","vbt","impulse","hra","lasertech","iontech","plasmatech","forschungsnetz","expedition","gravi"),
 			// other numeric values
-			array("fleet_resis","defence_resis","age")
+			array("fleet_resis","defence_resis","age","points")
 		);
 
 		foreach ($parameter as $key_array) {

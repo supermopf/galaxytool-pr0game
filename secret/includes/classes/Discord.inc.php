@@ -90,8 +90,8 @@ class Discord {
 						  "value": "'.$arrivaltime.'"
 						},
 						{
-						  "name": "pr0game: Planet halten",
-						  "value": "https://pr0game.com/game.php?page=fleetTable&galaxy='.$defendercoords[0].'&system='.$defendercoords[1].'&planet='.$defendercoords[2].'&planettype=1&target_mission=5"
+						  "name": "pr0game",
+						  "value": "[Planet halten](https://pr0game.com/game.php?page=fleetTable&galaxy='.$defendercoords[0].'&system='.$defendercoords[1].'&planet='.$defendercoords[2].'&planettype=1&target_mission=5)"
 						}
 					  ]
 					}
@@ -103,7 +103,13 @@ class Discord {
 	}
 
 	public function SendHeavyLossMessage($player,$statsbefore,$statsafter,$totalloss,$planets,$moonchance) {
-        echo "Send triggerd";
+        $planetsarray = explode(";",$planets);
+        $planetsstring = "";
+        foreach ($planetsarray as $prettyplanet){
+            preg_match("/(\d+):(\d+):(\d+)/", $prettyplanet, $coords);
+            $planetsstring .= "[".$prettyplanet."](https://pr0game.com/game.php?page=galaxy&galaxy=".$coords[1]."&system=".$coords[2].");";
+        }
+        $planetsstring = rtrim($planetsstring, ";");
 		$JSON = '{
 					"username": "Walter Harriman",
 					"avatar_url": "https://pr0game.gamerangerz.de/images/walter.png",
@@ -122,7 +128,7 @@ class Discord {
 						},
 						{
 						  "name": "Planeten",
-						  "value": "'.$planets.'"
+						  "value": "'.$planetsstring.'"
 						},
 						{
 						  "name": "Mondchance",
