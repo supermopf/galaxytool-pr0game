@@ -81,7 +81,7 @@ class Messages extends GenericSuperclass {
 
 		// do not use count(*) here, we use the identical query as in get_message_overview() as this will be triggered if the user
 		// follows the navigation to the message details and the query can be fulfilled by query buffer this way
-		$query = "SELECT m.id, m.messagetime, m.subject, p.playername FROM $this->messagetable m, $this->playertable p WHERE m.userid=:user_id AND m.player_id_from = p.id AND m.player_id_from = player_id";
+		$query = "SELECT m.id, m.messagetime, m.subject, p.playername FROM $this->messagetable m, $this->playertable p WHERE m.userid=:user_id AND m.player_id_from = p.id AND m.player_id_from = :player_id";
 		$stmt = DB::getDB()->prepare($query);
 		$stmt->bindParam(":player_id", $playerid);
 		$stmt->bindParam(":user_id", $user_id);

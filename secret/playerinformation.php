@@ -120,34 +120,36 @@ if (isset($_GET['id'])) {
 		$fbscore = ($player_information['fbrank'] > 0) ? DETAILEDINFO_RANK.": ".$player_information['fbrank']." ".DETAILEDINFO_POINTS." ".number_format($player_information['fbpoints'],0,",",".") : DETAILEDINFO_UNKNOWN;
 		$fdscore = ($player_information['fdrank'] > 0) ? DETAILEDINFO_RANK.": ".$player_information['fdrank']." ".DETAILEDINFO_POINTS." ".number_format($player_information['fdpoints'],0,",",".") : DETAILEDINFO_UNKNOWN;
 		$flscore = ($player_information['flrank'] > 0) ? DETAILEDINFO_RANK.": ".$player_information['flrank']." ".DETAILEDINFO_POINTS." ".number_format($player_information['flpoints'],0,",",".") : DETAILEDINFO_UNKNOWN;
-
+        $defscore = ($player_information['defrank'] > 0) ? DETAILEDINFO_RANK.": ".$player_information['defrank']." ".DETAILEDINFO_POINTS." ".number_format($player_information['defpoints'],0,",",".") : DETAILEDINFO_UNKNOWN;
+        /*
 		$defence = $player_information['fpoints'] - $player_information['points'] + $player_information['rpoints'] + $player_information['epoints'];
-		if ($defence < 0) $defence = 0;
-		$defence = number_format($defence,0,",",".");
+		if ($defence < 0){
+            $defence = 0;
+        }
 		if ($player_information['ships'] > 0) {
 			$scores_per_ship = number_format(($player_information['fpoints'] - $defence) / $player_information['ships'] ,0,",",".");
 		} else {
 			$scores_per_ship = DETAILEDINFO_UNKNOWN;
 		}
 		$ships = number_format($player_information['ships'] ,0,",",".");
-
+        */
 ?>
 		<tr><td><?php echo DETAILEDINFO_SCORE; ?></td><td><?php echo $score; ?></td></tr>
 		<tr><td><?php echo STATS_ECONOMY; ?></td><td><?php echo $escore; ?></td></tr>
 		<tr><td><?php echo DETAILEDINFO_RESEARCH; ?></td><td><?php echo $rscore; ?></td></tr>
 		<tr><td><?php echo STATS_MILITARY; ?></td><td><?php echo $fscore; ?></td></tr>
-		<tr><td><?php echo STATS_HONOUR; ?></td><td><?php echo $hscore; ?></td></tr>
-		<tr><td><?php echo STATS_MILITARY_BUILD; ?></td><td><?php echo $fbscore; ?></td></tr>
-		<tr><td><?php echo STATS_MILITARY_DESTROYED; ?></td><td><?php echo $fdscore; ?></td></tr>
-		<tr><td><?php echo STATS_MILITARY_LOST; ?></td><td><?php echo $flscore; ?></td></tr>
-		<tr><td><?php echo DETAILEDINFO_SHIPS; ?></td><td><?php echo $ships; ?></td></tr>
+<!--		<tr><td>--><?php //echo STATS_HONOUR; ?><!--</td><td>--><?php //echo $hscore; ?><!--</td></tr>-->
+<!--		<tr><td>--><?php //echo STATS_MILITARY_BUILD; ?><!--</td><td>--><?php //echo $fbscore; ?><!--</td></tr>-->
+<!--		<tr><td>--><?php //echo STATS_MILITARY_DESTROYED; ?><!--</td><td>--><?php //echo $fdscore; ?><!--</td></tr>-->
+<!--		<tr><td>--><?php //echo STATS_MILITARY_LOST; ?><!--</td><td>--><?php //echo $flscore; ?><!--</td></tr>-->
+<!--		<tr><td>--><?php //echo DETAILEDINFO_SHIPS; ?><!--</td><td>--><?php //echo $ships; ?><!--</td></tr>-->
 		<tr><td><?php echo DETAILEDINFO_DEFENCE_SCORE; ?></td>
 			<td>
-			<span id="TooltipDefenceScore" class="hyperlink" onmouseover="dijit.Tooltip.defaultPosition=['above', 'below']"><?php echo $defence; ?></span>
+			<span id="TooltipDefenceScore" class="hyperlink" onmouseover="dijit.Tooltip.defaultPosition=['above', 'below']"><?php echo $defscore; ?></span>
 			<div class="dijitHidden"><span data-dojo-type="dijit.Tooltip" data-dojo-props="connectId:'TooltipDefenceScore'"><?php echo DETAILEDINFO_DEFENCE_SCORE_TOOLTIP; ?></span></div>
 			</td>
 		</tr>
-		<tr><td><?php echo DETAILEDINFO_SCORE_PER_SHIP; ?></td><td><?php echo $scores_per_ship; ?></td></tr>
+<!--		<tr><td>--><?php //echo DETAILEDINFO_SCORE_PER_SHIP; ?><!--</td><td>--><?php //echo $scores_per_ship; ?><!--</td></tr>-->
 		<tr><td><?php echo USER_BB_OUTLAW; ?></td><td><?php echo ($player_information['bandit'] == "true") ? SHOW_YES : SHOW_NO; ?></td></tr>
 
 <?php
