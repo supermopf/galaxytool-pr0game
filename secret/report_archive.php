@@ -55,7 +55,7 @@ if($moon == "true") $coordinates_with_moon.= " M";
 if (!isset($store_url)) $store_url = "ajax/ajax_report_archive.php?type=empty";
 
 // get playername and planetname if available (might not be available if cleanup scripts were not executed)
-$query = "SELECT planetname, playername, p.id FROM $dbtablename g, $playertable p ".
+$query = "SELECT `g`.`planetname`, `p`.`playername`, `p`.`id` FROM $dbtablename g, $playertable p ".
          "WHERE g.ogame_playerid = p.ogame_playerid AND g.galaxy=:galaxy AND g.system=:system AND g.planet=:planet";
 $stmt = DB::getDB()->prepare($query);
 $stmt->bindParam(":galaxy", $coords[0]);
