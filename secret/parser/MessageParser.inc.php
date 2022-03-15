@@ -221,7 +221,7 @@ class MessageParser extends XMLParserGlobal{
 		}
 
 		// determine galaxytool palyerids from database which have an ogame playerid
-		$query = "SELECT id,playername,ogame_playerid FROM $this->playertable WHERE ";
+		$query = "SELECT id,playername,ogame_playerid FROM ".$this->playertable." WHERE ";
 		if (count($ogame_playerids) > 0) {
 			$query .= " ogame_playerid IN ('".implode("','",$ogame_playerids)."') ";
 		}
@@ -242,16 +242,19 @@ class MessageParser extends XMLParserGlobal{
 					// add third array entry which contains galaxytool player id
 					$players[$player_id_pos[$line->ogame_playerid]][2] = $line->id;
 
+                    //Playername does not change on rename 13.03.22
+                    /*
 					if ($player[1] != $line->playername) {
 						// update needed on playername for given ogame playerid
-						$update_query = "UPDATE $this->playertable SET playername=".DB::getDB()->quote($player[1])." WHERE ogame_playerid=".$line->ogame_playerid;
-						$stmt2 = $this->$query($update_query);
+						$update_query = "UPDATE ".$this->playertable." SET playername=".DB::getDB()->quote($player[1])." WHERE ogame_playerid=".$line->ogame_playerid;
+                        $stmt2 = $this->$query($update_query);
 						if (!$stmt2) {
 							$this->error_object = new ErrorObject(ErrorObject::severity_error , "DB error occurred while updating playername");
 							$this->error_object->add_child_message($this->get_db_error_object());
 							return false;
 						}
 					}
+                    */
 				} else {
 					// no ogame playerid provided from outside, but exists on DB
 					// -> must not happen
