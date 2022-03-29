@@ -136,6 +136,12 @@ class FleetMovementParser extends XMLParserGlobal{
 		$return_value["origin"]       = $this->get_coordinates_data($fleet_DOMNode,"origin");
 		$return_value["destination"]  = $this->get_coordinates_data($fleet_DOMNode,"destination");
 
+        if ($fleet_DOMNode->hasAttribute("fleet_known")) {
+            $return_value["fleet_known"] = $fleet_DOMNode->getAttribute("fleet_known");
+        }else{
+            $return_value["fleet_known"] = False;
+        }
+
 		// entries
 		$return_value["entries"]      = array();
 		$fleet_entries_DOMNode = $fleet_DOMNode->getElementsByTagName("entry");
@@ -194,7 +200,7 @@ class FleetMovementParser extends XMLParserGlobal{
 
 		$query = "INSERT INTO `$this->fleetmovetable` (".
 		"`fleet_id`,`sub_fleet_id`,`mission`,`arrival_time`,`returning`,`origin_galaxy`,`origin_system`,`origin_planet`,`origin_planetname`,`origin_moon`,".
-		"`destination_galaxy`,`destination_system`,`destination_planet`,`destination_planetname`,`destination_moon`,`scantime`,`user_id`,".
+		"`destination_galaxy`,`destination_system`,`destination_planet`,`destination_planetname`,`destination_moon`,`scantime`,`fleet_known`,`user_id`,".
 		"`metal`,`crystal`,`deuterium`,".
 		"`kt`,`gt`,`lj`,`sj`,`krz`,`ss`,`kolo`,`rec`,`spio`,`bomb`,`zerri`,`ds`,`skrz`,`irak`".
 		") VALUES ";
@@ -247,6 +253,8 @@ class FleetMovementParser extends XMLParserGlobal{
 			$entry_query .= DB::getDB()->quote($fleet["destination"]["planetname"]).",";
 			$entry_query .= DB::getDB()->quote($fleet["destination"]["moon"]).",";
 			$entry_query .= DB::getDB()->quote($fleet["scantime"]).",";
+            $entry_query .= DB::getDB()->quote($fleet["fleet_known"]).",";
+
 			$entry_query .= $this->userid.",";
 
 			// add all entries to query
@@ -274,9 +282,21 @@ class FleetMovementParser extends XMLParserGlobal{
 		"`destination_galaxy`=VALUES(`destination_galaxy`),`destination_system`=VALUES(`destination_system`),`destination_planet`=VALUES(`destination_planet`),".
 		"`destination_planetname`=VALUES(`destination_planetname`),`destination_moon`=VALUES(`destination_moon`),`scantime`=VALUES(`scantime`),`user_id`=VALUES(`user_id`),".
 		"`metal`=VALUES(`metal`),`crystal`=VALUES(`crystal`),`deuterium`=VALUES(`deuterium`),".
-		"`kt`=VALUES(`kt`),`gt`=VALUES(`gt`),`lj`=VALUES(`lj`),`sj`=VALUES(`sj`),`krz`=VALUES(`krz`),".
-		"`ss`=VALUES(`ss`),`kolo`=VALUES(`kolo`),`rec`=VALUES(`rec`),`spio`=VALUES(`spio`),`bomb`=VALUES(`bomb`),".
-		"`zerri`=VALUES(`zerri`),`ds`=VALUES(`ds`),`skrz`=VALUES(`skrz`),`irak`=VALUES(`irak`)";
+		"`fleet_known`=IF(VALUES(`fleet_known`) = 'true',VALUES(`fleet_known`),`fleet_known`),".
+		"`kt`=IF(VALUES(`fleet_known`) = 'true',VALUES(`kt`),`kt`),".
+		"`gt`=IF(VALUES(`fleet_known`) = 'true',VALUES(`gt`),`gt`),".
+		"`lj`=IF(VALUES(`fleet_known`) = 'true',VALUES(`lj`),`lj`),".
+		"`sj`=IF(VALUES(`fleet_known`) = 'true',VALUES(`sj`),`sj`),".
+		"`krz`=IF(VALUES(`fleet_known`) = 'true',VALUES(`krz`),`krz`),".
+		"`ss`=IF(VALUES(`fleet_known`) = 'true',VALUES(`ss`),`ss`),".
+		"`kolo`=IF(VALUES(`fleet_known`) = 'true',VALUES(`kolo`),`kolo`),".
+		"`rec`=IF(VALUES(`fleet_known`) = 'true',VALUES(`rec`),`rec`),".
+		"`spio`=IF(VALUES(`fleet_known`) = 'true',VALUES(`spio`),`spio`),".
+		"`bomb`=IF(VALUES(`fleet_known`) = 'true',VALUES(`bomb`),`bomb`),".
+		"`zerri`=IF(VALUES(`fleet_known`) = 'true',VALUES(`zerri`),`zerri`),".
+		"`ds`=IF(VALUES(`fleet_known`) = 'true',VALUES(`ds`),`ds`),".
+        "`skrz`=IF(VALUES(`fleet_known`) = 'true',VALUES(`skrz`),`skrz`),".
+        "`irak`=IF(VALUES(`fleet_known`) = 'true',VALUES(`irak`),`irak`)";
 
 		$stmt = $this->query($query);
 		if (!$stmt) {
@@ -296,14 +316,28 @@ class FleetMovementParser extends XMLParserGlobal{
 		SELECT 	ps.playername AS attacker,
 				pd.playername AS defender,
 				f.fleet_id,
-				f.arrival_time + INTERVAL 1 HOUR AS arrival_time,
+                CONVERT_TZ(f.arrival_time, 'UTC', 'Europe/Berlin') AS arrival_time,
 				f.origin_galaxy,
 				f.origin_system,
 				f.origin_planet,
 				f.destination_galaxy,
 				f.destination_system,
-				f.destination_planet
-				
+				f.destination_planet,
+		        f.kt,
+		        f.gt,
+		        f.lj,
+		        f.sj,
+		        f.krz,
+		        f.ss,
+		        f.kolo,
+		        f.rec,
+		        f.spio,
+		        f.bomb,
+		        f.zerri,
+		        f.ds,
+		        f.skrz,
+		        f.fleet_known
+		
 		FROM `fleet_movements` as f
 			INNER JOIN galaxy as gs 
 				ON f.origin_galaxy = gs.galaxy
@@ -324,7 +358,7 @@ class FleetMovementParser extends XMLParserGlobal{
 				f.`mission` = 'attack' 
 				AND f.`returning` = 'false'
 				AND f.`notification_sent` = 0
-				AND ad.diplomatic_status = 'own'
+				AND ad.diplomatic_status IN ('own','wing')
 		";		
 		
 		$stmt = $this->query($query);
@@ -342,7 +376,26 @@ class FleetMovementParser extends XMLParserGlobal{
 			$defendercoords = [$line->destination_galaxy,$line->destination_system,$line->destination_planet];
 			
 			$arrivaltime = $line->arrival_time;
-			if($discord->SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime)){
+
+            $Fleet = [
+                "Kleine Transporter" => $line->kt,
+                "Große Transporter"  => $line->gt,
+                "Leichte Jäger"      => $line->lj,
+                "Schwere Jäger"      => $line->sj,
+                "Kreuzer"            => $line->krz,
+                "Schlachtschiffe"    => $line->ss,
+                "Kolonieschiffe"     => $line->kolo,
+                "Recyler"            => $line->rec,
+                "Spionagesonden"     => $line->spio,
+                "Bomber"             => $line->bomb,
+                "Zerstörer"          => $line->zerri,
+                "Todesstern"         => $line->ds,
+                "Schlachtkreuzer"    => $line->skrz
+            ];
+
+            $FleetKnown = $line->fleet_known;
+
+			if($discord->SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime,$Fleet,$FleetKnown)){
 				$query = "UPDATE `fleet_movements` SET `notification_sent` = 1 WHERE `fleet_id` = ".$line->fleet_id;
 				$stmt = $this->query($query);
 			}

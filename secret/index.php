@@ -83,12 +83,12 @@ switch($_SESSION['lang']) {
 	default:        $url = "https://chrome.google.com/webstore/detail/galaxytoolbar-for-pr0game/afmklcjabllgobbimodcfpbbkplmmeob"; break;
 }
 
-echo "Wilkommen Im Galaxytool von SG-1!<br/><br/>";
+echo "Wilkommen Im Galaxytool des Verbunds waffenfähiger Autisten!<br/><br/>";
 echo "Das Galaxytool wird dich dabei unterstützen herauszufinden, was im pr0game vorgeht.<br/>";
 echo str_replace("&1",'<a target="_blank" class="external_link" href="'.$url.'">Galaxytoolbar for pr0game</a>',INDEX_GETTING_STARTED3);
 echo "<br>".INDEX_GETTING_STARTED4."<br>";
 echo INDEX_GETTING_STARTED5." ".INDEX_GETTING_STARTED6."<br><br>";
-echo "Solltest du Fragen zu unserem Galaxytool haben, melde dich einfach in #galaxytool-support auf dem SG-1 Discord.<br>";
+echo "Solltest du Fragen zu unserem Galaxytool haben, melde dich einfach in #galaxytool-support auf unserem Discord.<br>";
 
 /*
 echo INDEX_GETTING_STARTED1."<br>";

@@ -62,7 +62,33 @@ class Discord {
         return $headers;
     }
 
-	public function SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime) {
+	public function SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime, $Fleet, $FleetKnown) {
+        $FleetString = "";
+
+        if($FleetKnown == "true"){
+            $HeaderMissing = true;
+            foreach ($Fleet as $Ship=>$amount){
+                if($amount > 0){
+                    if($HeaderMissing){
+                        $FleetString .= "Flotte besteht aus folgenden Schiffen:".'\n\n';
+                        $HeaderMissing = false;
+                    }
+                    $FleetString .= $Ship.': '.$amount.'\n';
+                }
+            }
+        }else{
+            $HeaderMissing = true;
+            foreach ($Fleet as $Ship=>$amount){
+                if($amount > 0){
+                    if($HeaderMissing){
+                        $FleetString .= "Flotte besteht aus $amount Schiffen folgender Typen:".'\n\n';
+                        $HeaderMissing = false;
+                    }
+                    $FleetString .= $Ship.'\n';
+                }
+            }
+        }
+
 		$JSON = '{
 					"username": "Walter Harriman",
 					"avatar_url": "https://pr0game.gamerangerz.de/images/walter.png",
@@ -86,12 +112,16 @@ class Discord {
 						  "inline": true
 						},
 						{
-						  "name": "Ankunft um:",
+						  "name": "Ankunft um",
 						  "value": "'.$arrivaltime.'"
 						},
 						{
-						  "name": "pr0game",
+						  "name": "pr0game Aktion",
 						  "value": "[Planet halten](https://pr0game.com/game.php?page=fleetTable&galaxy='.$defendercoords[0].'&system='.$defendercoords[1].'&planet='.$defendercoords[2].'&planettype=1&target_mission=5)"
+						},
+						{
+						  "name": "Flotte",
+						  "value": "'.$FleetString.'"
 						}
 					  ]
 					}
