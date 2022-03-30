@@ -358,22 +358,22 @@ const DB_REPORT_ARRAY = [
             "DBFIELD" => "gravi",
 			"INDEX" => 65,
 		],
-        "Produktionsmaximierung Metall" => [
+        RS_PRODMAXMETAL => [
             "TYPE" => "research",
             "DBFIELD" => "prodmaxmetall",
 			"INDEX" => 66,
 		],
-        "Produktionsmaximierung Kristall" => [
+        RS_PRODMAXCRYSTAL => [
             "TYPE" => "research",
             "DBFIELD" => "prodmaxkristall",
 			"INDEX" => 67,
 		],
-        "Produktionsmaximierung Deuterium" => [
+        RS_PRODMAXDEUT => [
             "TYPE" => "research",
             "DBFIELD" => "prodmaxdeut",
 			"INDEX" => 68,
 		],
-        "TechnoDome" => [
+        B_TECHNODOME => [
             "TYPE" => "building",
             "DBFIELD" => "TechnoDome",
 			"INDEX" => 69,

@@ -115,6 +115,7 @@ class ReportArchive extends GenericSuperclass {
 			$results['folab'][0] = $flipped_probe_array[B_RESAERCHLAB];
 			$results['terra'][0] = $flipped_probe_array[B_TERRAFORMER];
 			$results['allydep'][0] = $flipped_probe_array[B_ALLIANCEDEPOT];
+            $results['technodome'][0] = $flipped_probe_array[B_TECHNODOME];
 			$results['raksilo'][0] = $flipped_probe_array[B_ROCKETSILO];
 		} else {
 			$results['robo'][0] = $flipped_probe_array[B_ROBOTFACTORY];
@@ -143,6 +144,9 @@ class ReportArchive extends GenericSuperclass {
 		$results['plasmatech'][0] = $flipped_probe_array[RS_PLASMA];
 		$results['forschungsnetz'][0] = $flipped_probe_array[RS_IRNETWORK];
 		$results['expedition'][0] = $flipped_probe_array[RS_EXPEDITION];
+        $results['prodmaxmetall'][0] = $flipped_probe_array[RS_PRODMAXMETAL];
+        $results['prodmaxkristall'][0] = $flipped_probe_array[RS_PRODMAXCRYSTAL];
+        $results['prodmaxdeut'][0] = $flipped_probe_array[RS_PRODMAXDEUT];
 		$results['gravi'][0] = $flipped_probe_array[RS_GRAVITON];
 
 		foreach ($db_result as $date => $line) {

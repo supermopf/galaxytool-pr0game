@@ -256,7 +256,11 @@ class ProbeLanguages {
 			RS_PLASMA => "plasmatech",
 			RS_IRNETWORK => "forschungsnetz",
 			RS_EXPEDITION => "expedition",
-			RS_GRAVITON => "gravi");
+			RS_GRAVITON => "gravi",
+            RS_PRODMAXMETAL => "prodmaxmetall",
+            RS_PRODMAXCRYSTAL => "prodmaxkristall",
+            RS_PRODMAXDEUT => "prodmaxdeut",
+            );
 
 	}
 

@@ -56,7 +56,9 @@ class Reports extends GenericSuperclass {
                  "p.schildtech as pschildtech, p.rpz as prpz, p.energytech as penergytech, p.hypertech as phypertech,".
                  "p.vbt as pvbt, p.impulse as pimpulse, p.hra as phra, p.lasertech as plasertech, ".
                  "p.iontech as piontech, p.plasmatech as pplasmatech, p.forschungsnetz as pforschungsnetz, ".
-                 "p.expedition as pexpedition, p.gravi as pgravi, p.playername, p.bandit ".		
+                 "p.expedition as pexpedition, p.gravi as pgravi, p.prodmaxmetall as pprodmaxmetall,".
+                 "p.prodmaxkristall as pprodmaxkristall, p.prodmaxdeut as pprodmaxdeut,".
+                 "p.playername, p.bandit ".
                  "FROM $this->dbtablename g ".
                  "LEFT JOIN $this->reporttable r ON (g.galaxy=r.galaxy AND g.system=r.system AND g.planet=r.planet) ".
                  "LEFT JOIN $this->playertable p ON (p.ogame_playerid=g.ogame_playerid) ".
@@ -668,6 +670,12 @@ class Reports extends GenericSuperclass {
         unset($result["pexpedition"]);
         $result["gravi"] = $result["pgravi"];
         unset($result["pgravi"]);
+        $result["prodmaxmetall"] = $result["pprodmaxmetall"];
+        unset($result["pprodmaxmetall"]);
+        $result["prodmaxkristall"] = $result["pprodmaxkristall"];
+        unset($result["pprodmaxkristall"]);
+        $result["prodmaxdeut"] = $result["pprodmaxdeut"];
+        unset($result["pprodmaxdeut"]);
     
         return $result;
     }

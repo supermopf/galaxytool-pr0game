@@ -78,6 +78,7 @@ $probe_array = array(
 "Mondbasis" => B_LUNARBASE,
 "Sensorphalanx" => B_SENSORPHALANX,
 "Sprungtor" => B_JUMPGATE,
+"TechnoDome" => B_TECHNODOME,
 
 /*********************************************************************/
 /*****************************  Research   ***************************/
@@ -97,7 +98,10 @@ $probe_array = array(
 "Plasmatechnik" => RS_PLASMA,
 "Intergalaktisches Forschungsnetzwerk" => RS_IRNETWORK,
 "Astrophysik" => RS_EXPEDITION,
-"Gravitonforschung" => RS_GRAVITON
+"Gravitonforschung" => RS_GRAVITON,
+"Produktionsmaximierung Metall" => RS_PRODMAXMETAL,
+"Produktionsmaximierung Kristall" => RS_PRODMAXCRYSTAL,
+"Produktionsmaximierung Deuterium" => RS_PRODMAXDEUT
 );
 
 

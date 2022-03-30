@@ -81,6 +81,7 @@ define("B_SENSORPHALANX", "Sensor Phalanx");
 define("B_JUMPGATE", "Jump Gate");
 define("B_SPACEDOCK", "Space Dock");
 define("B_CRAWLER", "Crawler");
+define("B_TECHNODOME", "TechnoDome");
 
 /*********************************************************************/
 /***************************** Research ****************************/
@@ -102,6 +103,9 @@ define("RS_PLASMA", "Plasma Technology");
 define("RS_IRNETWORK", "Intergalactic Research Network");
 define("RS_EXPEDITION","Astrophysics");
 define("RS_GRAVITON", "Graviton Technology");
+define("RS_PRODMAXMETAL", "Produktionsmaximierung Metall");
+define("RS_PRODMAXCRYSTAL", "Produktionsmaximierung Kristall");
+define("RS_PRODMAXDEUT", "Produktionsmaximierung Deuterium");
 
 /*********************************************************************/
 /**************  Do not translate the stuff below ********************/
