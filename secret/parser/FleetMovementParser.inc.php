@@ -355,7 +355,7 @@ class FleetMovementParser extends XMLParserGlobal{
 				ON pd.alliance_id = ad.id
 
 			WHERE 
-				f.`mission` = 'attack' 
+				f.`mission` IN ('attack','acs_attack')
 				AND f.`returning` = 'false'
 				AND f.`notification_sent` = 0
 				AND ad.diplomatic_status IN ('own','wing')
