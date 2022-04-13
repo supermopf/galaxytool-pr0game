@@ -58,7 +58,8 @@ class Reports extends GenericSuperclass {
                  "p.iontech as piontech, p.plasmatech as pplasmatech, p.forschungsnetz as pforschungsnetz, ".
                  "p.expedition as pexpedition, p.gravi as pgravi, p.prodmaxmetall as pprodmaxmetall,".
                  "p.prodmaxkristall as pprodmaxkristall, p.prodmaxdeut as pprodmaxdeut,".
-                 "p.playername, p.bandit ".
+                 "p.playername, p.bandit, ".
+                 "0 AS UFO ".
                  "FROM $this->dbtablename g ".
                  "LEFT JOIN $this->reporttable r ON (g.galaxy=r.galaxy AND g.system=r.system AND g.planet=r.planet) ".
                  "LEFT JOIN $this->playertable p ON (p.ogame_playerid=g.ogame_playerid) ".

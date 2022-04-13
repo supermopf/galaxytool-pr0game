@@ -31,7 +31,8 @@ class FleetMovementParser extends XMLParserGlobal{
 	F_DESTROYER => 13,
 	F_DEATHSTAR => 14,
 	F_BATTLECRUISER=> 15,
-	D_INTERPLANETARYMISSILE=>16
+	D_INTERPLANETARYMISSILE=>16,
+        "UFO" => 17
 	);
 
 	private $db_fieldnames = array(	"metal","crystal","deuterium","kt","gt","lj","sj","krz","ss","kolo","rec","spio","bomb","zerri","ds","skrz","irak");
@@ -202,7 +203,7 @@ class FleetMovementParser extends XMLParserGlobal{
 		"`fleet_id`,`sub_fleet_id`,`mission`,`arrival_time`,`returning`,`origin_galaxy`,`origin_system`,`origin_planet`,`origin_planetname`,`origin_moon`,".
 		"`destination_galaxy`,`destination_system`,`destination_planet`,`destination_planetname`,`destination_moon`,`scantime`,`fleet_known`,`user_id`,".
 		"`metal`,`crystal`,`deuterium`,".
-		"`kt`,`gt`,`lj`,`sj`,`krz`,`ss`,`kolo`,`rec`,`spio`,`bomb`,`zerri`,`ds`,`skrz`,`irak`".
+		"`kt`,`gt`,`lj`,`sj`,`krz`,`ss`,`kolo`,`rec`,`spio`,`bomb`,`zerri`,`ds`,`skrz`,`irak`,`UFO`".
 		") VALUES ";
 
 		foreach ($fleets_data as $fleet) {
@@ -296,7 +297,8 @@ class FleetMovementParser extends XMLParserGlobal{
 		"`zerri`=IF(VALUES(`fleet_known`) = 'true',VALUES(`zerri`),`zerri`),".
 		"`ds`=IF(VALUES(`fleet_known`) = 'true',VALUES(`ds`),`ds`),".
         "`skrz`=IF(VALUES(`fleet_known`) = 'true',VALUES(`skrz`),`skrz`),".
-        "`irak`=IF(VALUES(`fleet_known`) = 'true',VALUES(`irak`),`irak`)";
+        "`irak`=IF(VALUES(`fleet_known`) = 'true',VALUES(`irak`),`irak`),".
+        "`UFO`=IF(VALUES(`fleet_known`) = 'true',0,`UFO`)";
 
 		$stmt = $this->query($query);
 		if (!$stmt) {
@@ -306,8 +308,17 @@ class FleetMovementParser extends XMLParserGlobal{
 		}
 
 		if($this->CheckIncomingAttack()){
-			return true;
-		}	
+            //Update our last Check
+            $query = "UPDATE `usertable` SET `lastfleetcheck`= NOW() WHERE `id` = ".$this->userid;
+            $stmt = $this->query($query);
+            if (!$stmt) {
+                $this->error_object = new ErrorObject(ErrorObject::severity_error , "DB error occurred while updating lastchecktime");
+                $this->error_object->add_child_message($this->get_db_error_object());
+                return false;
+            }else{
+                return true;
+            }
+		}
 	}
 	
 	
@@ -336,7 +347,9 @@ class FleetMovementParser extends XMLParserGlobal{
 		        f.zerri,
 		        f.ds,
 		        f.skrz,
-		        f.fleet_known
+		        f.UFO,
+		        f.fleet_known,
+                ud.lastfleetcheck
 		
 		FROM `fleet_movements` as f
 			INNER JOIN galaxy as gs 
@@ -353,6 +366,9 @@ class FleetMovementParser extends XMLParserGlobal{
 				ON gd.ogame_playerid = pd.ogame_playerid
 			INNER JOIN alliances as ad
 				ON pd.alliance_id = ad.id
+			LEFT JOIN usertable as ud
+				ON pd.ogame_playerid  = ud.ogame_playerid
+		
 
 			WHERE 
 				f.`mission` IN ('attack','acs_attack')
@@ -371,6 +387,8 @@ class FleetMovementParser extends XMLParserGlobal{
 		while ($line = $stmt->fetch(PDO::FETCH_OBJ)) {
 			$attacker = $line->attacker;
 			$defender = $line->defender;
+
+            $LastFleetCheck = $line->lastfleetcheck;
 			
 			$attackercoords = [$line->origin_galaxy,$line->origin_system,$line->origin_planet];
 			$defendercoords = [$line->destination_galaxy,$line->destination_system,$line->destination_planet];
@@ -390,12 +408,13 @@ class FleetMovementParser extends XMLParserGlobal{
                 "Bomber"             => $line->bomb,
                 "Zerstörer"          => $line->zerri,
                 "Todesstern"         => $line->ds,
-                "Schlachtkreuzer"    => $line->skrz
+                "Schlachtkreuzer"    => $line->skrz,
+                "UFO"                => $line->UFO
             ];
 
             $FleetKnown = $line->fleet_known;
 
-			if($discord->SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime,$Fleet,$FleetKnown)){
+			if($discord->SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime,$Fleet,$FleetKnown,$LastFleetCheck)){
 				$query = "UPDATE `fleet_movements` SET `notification_sent` = 1 WHERE `fleet_id` = ".$line->fleet_id;
 				$stmt = $this->query($query);
 			}

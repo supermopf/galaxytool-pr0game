@@ -211,7 +211,7 @@ class FleetMovements extends GenericSuperclass {
 		$fleets = array();
 		while ($line = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
-			$line['ships'] = $line['kt'] + $line['gt'] + $line['lj'] + $line['sj'] + $line['krz'] + $line['ss'] + $line['kolo'] + $line['rec'] + $line['spio'] + $line['bomb'] + $line['zerri'] + $line['ds'] + $line['skrz'] + $line['irak'];
+			$line['ships'] = $line['kt'] + $line['gt'] + $line['lj'] + $line['sj'] + $line['krz'] + $line['ss'] + $line['kolo'] + $line['rec'] + $line['spio'] + $line['bomb'] + $line['zerri'] + $line['ds'] + $line['skrz'] + $line['irak'] + $line['UFO'];
 
 			// calculate arrival time according to user Ogame offset settings
 			$timestamp = strtotime($line['arrival_time']) + $this->ogame_offset * 3600;
@@ -331,6 +331,7 @@ class FleetMovements extends GenericSuperclass {
 		if ($line['ds'] > 0)    $entities[] = array($ds_text,$line['ds']);
 		if ($line['skrz'] > 0)  $entities[] = array($skrz_text,$line['skrz']);
 		if ($line['irak'] > 0)  $entities[] = array($irak_text,$line['irak']);
+        if ($line['UFO'] > 0)   $entities[] = array("UFO",$line['UFO']);
 
 		return $entities;
 	}

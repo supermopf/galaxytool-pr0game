@@ -95,7 +95,7 @@ class Discord extends DBHandler {
         }
     }
 
-	public function SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime, $Fleet, $FleetKnown) {
+	public function SendAttackMessage($attacker,$attackercoords,$defender,$defendercoords,$arrivaltime, $Fleet, $FleetKnown, $LastFleetCheck) {
         $FleetString = "";
         $FleetTitle = "";
         $FlightString100 = "";
@@ -108,6 +108,7 @@ class Discord extends DBHandler {
         $WaffenTech = "";
         $SchildTech = "";
         $PanzerTech = "";
+        $DebugString = "";
 
         $query = "SELECT `waffentech`,`schildtech`,`rpz`,`vbt`,`impulse`,`hra`,`last_tech_update` FROM `players` WHERE `playername` = ";
 
@@ -172,6 +173,19 @@ class Discord extends DBHandler {
                 $TripTime60 = floor((3500 / 0.6) * pow(($Distance * 10 / $LowestSpeed), 0.5) + 10);
                 $TripTime50 = floor((3500 / 0.5) * pow(($Distance * 10 / $LowestSpeed), 0.5) + 10);
 
+
+                if($LastFleetCheck == null){
+                    $LastCheckTime = new DateTime();
+                }else{
+                    $LastCheckTime = new DateTime($LastFleetCheck);
+                }
+
+                $TimeNow = new DateTime();
+                $ArrivalTime   = new DateTime($arrivaltime);
+
+                $SecondsSinceLastCheck = abs($ArrivalTime->getTimestamp() - $LastCheckTime->getTimestamp());
+                $SecondsLeft = abs($ArrivalTime->getTimestamp() - $TimeNow->getTimestamp());
+
                 $FlightTime100 = new DateTime($arrivaltime);
                 $FlightTime90  = new DateTime($arrivaltime);
                 $FlightTime80  = new DateTime($arrivaltime);
@@ -193,6 +207,62 @@ class Discord extends DBHandler {
                 $FlightString60  .= $FlightTime60->format('H:i:s');
                 $FlightString50  .= $FlightTime50->format('H:i:s');
 
+                if($SecondsSinceLastCheck > $TripTime100 &&
+                    $SecondsLeft < $TripTime100)
+                {
+                    $FlightString100 .= ' :white_check_mark:';
+                }else{
+                    $FlightString100 .= ' :no_entry_sign:';
+                }
+
+                if($SecondsSinceLastCheck > $TripTime90 &&
+                    $SecondsLeft < $TripTime90)
+                {
+                    $FlightString90 .= ' :white_check_mark:';
+                }else{
+                    $FlightString90 .= ' :no_entry_sign:';
+                }
+
+                if($SecondsSinceLastCheck > $TripTime80 &&
+                    $SecondsLeft < $TripTime80)
+                {
+                    $FlightString80 .= ' :white_check_mark:';
+                }else{
+                    $FlightString80 .= ' :no_entry_sign:';
+                }
+
+                if($SecondsSinceLastCheck > $TripTime70 &&
+                    $SecondsLeft < $TripTime70)
+                {
+                    $FlightString70 .= ' :white_check_mark:';
+                }else{
+                    $FlightString70 .= ' :no_entry_sign:';
+                }
+
+                if($SecondsSinceLastCheck > $TripTime60 &&
+                    $SecondsLeft < $TripTime60)
+                {
+                    $FlightString60 .= ' :white_check_mark:';
+                }else{
+                    $FlightString60 .= ' :no_entry_sign:';
+                }
+
+                if($SecondsSinceLastCheck > $TripTime50 &&
+                    $SecondsLeft < $TripTime50)
+                {
+                    $FlightString50 .= ' :white_check_mark:';
+                }else{
+                    $FlightString50 .= ' :no_entry_sign:';
+                }
+
+                $DebugString .= 'SecondsLastCheck: '.$SecondsSinceLastCheck.'\n';
+                $DebugString .= 'SecondsLeft: '.$SecondsLeft.'\n';
+                $DebugString .= '100: '.$TripTime100.'\n';
+                $DebugString .= '90: '.$TripTime90.'\n';
+                $DebugString .= '80: '.$TripTime80.'\n';
+                $DebugString .= '70: '.$TripTime70.'\n';
+                $DebugString .= '60: '.$TripTime60.'\n';
+                $DebugString .= '50: '.$TripTime50.'\n';
             }
         }
 
