@@ -255,6 +255,7 @@ class Discord extends DBHandler {
                     $FlightString50 .= ' :no_entry_sign:';
                 }
 
+                $DebugString .= 'LastCheck: '.$LastCheckTime->format(DateTime::ATOM).'\n';
                 $DebugString .= 'SecondsLastCheck: '.$SecondsSinceLastCheck.'\n';
                 $DebugString .= 'SecondsLeft: '.$SecondsLeft.'\n';
                 $DebugString .= '100: '.$TripTime100.'\n';

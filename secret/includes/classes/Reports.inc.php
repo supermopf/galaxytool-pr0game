@@ -596,6 +596,8 @@ class Reports extends GenericSuperclass {
 			unset($db_array['sensor']);
 			unset($db_array['sprungtor']);
 		}
+        //Remove UFOs
+        unset($db_array['UFO']);
 
 		$content = '{'."\n";
 		$content .= '"id": ["'.$db_row['id'].'", '.json_encode(REPORT_ARCHIVE_DETAILS).'],'."\n";

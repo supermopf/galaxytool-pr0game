@@ -177,15 +177,15 @@ class PlanetinfoParser extends XMLParserGlobal{
             // second moon detection (Lunarbase, sensorphalanx or jumpgate exist)
             $moon = $report["moon"];
             if (
-                $entries_array[DB_REPORT_ARRAY[B_LUNARBASE]["DBFIELD"]] > 0
-                ||  $entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]] > 0
-                ||  $entries_array[DB_REPORT_ARRAY[B_JUMPGATE]["DBFIELD"]] > 0
+                (isset($entries_array[DB_REPORT_ARRAY[B_LUNARBASE]["DBFIELD"]]) && $entries_array[DB_REPORT_ARRAY[B_LUNARBASE]["DBFIELD"]] > 0)
+                ||  (isset($entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]]) && $entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]] > 0)
+                ||  (isset($entries_array[DB_REPORT_ARRAY[B_JUMPGATE]["DBFIELD"]]) && $entries_array[DB_REPORT_ARRAY[B_JUMPGATE]["DBFIELD"]] > 0)
             ) {
                 $moon = "true";
             }
 
             // calculate max range for phalanx
-            if ($entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]] > 0) {
+            if (isset($entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]]) && $entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]] > 0) {
                 $min_phalanx = ($report["system"] - (($entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]]*$entries_array[DB_REPORT_ARRAY[B_SENSORPHALANX]["DBFIELD"]])-1));
                 if ($min_phalanx < 0){
                     $min_phalanx = 0;
@@ -197,7 +197,8 @@ class PlanetinfoParser extends XMLParserGlobal{
             }
 
             // calculate max range for rockets
-            if ($entries_array[DB_REPORT_ARRAY[B_ROCKETSILO]["DBFIELD"]] > 3){
+
+            if (isset($entries_array[DB_REPORT_ARRAY[B_ROCKETSILO]["DBFIELD"]]) && $entries_array[DB_REPORT_ARRAY[B_ROCKETSILO]["DBFIELD"]] > 3){
                 //Player has Rockets lets look at his techs
                 $playertech_query = "SELECT `impulse` FROM `".$this->playertable."` WHERE `ogame_playerid`=:ogame_playerid LIMIT 1";
                 $stmt = DB::getDB()->prepare($playertech_query);

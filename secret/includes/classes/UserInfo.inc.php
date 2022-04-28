@@ -202,6 +202,10 @@ class UserInfo extends GenericSuperclass {
 					$status_style = "traffic_light_green";
 					$status_content = $line->status;
 					break;
+                case "disabled":
+                    $status_style = "inactive";
+                    $status_content = $line->status;
+                    break;
 				default: throw new InvalidArgumentException();
 			}
 			if ($line->lastlogin == "0000-00-00 00:00:00") {

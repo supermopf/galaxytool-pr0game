@@ -399,9 +399,9 @@ class GalaxytoolSearch extends GenericSuperclass {
 
 		if ($this->selection['inactives'] !== null) {
 			if ($this->selection['inactives'] === false) {
-				array_push($wheres, "inactive = 'false'");
+				array_push($wheres, "p.inactive = 'false'");
 			} elseif ($this->selection['inactives'] == "inactive") {
-				array_push($wheres, "inactive = 'true'");
+				array_push($wheres, "p.inactive = 'true'");
 			} else {
 				array_push($wheres, "long_inactive = 'true'");
 			}
