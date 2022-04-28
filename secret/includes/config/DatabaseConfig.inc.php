@@ -204,17 +204,17 @@ const DB_REPORT_ARRAY = [
             "INDEX" => 34,
         ],
         B_ROBOTFACTORY => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "robo",
             "INDEX" => 35,
         ],
         B_NANITEFACTORY => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "nani",
             "INDEX" => 36,
         ],
         B_SHIPYARD => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "rawe",
             "INDEX" => 37,
         ],
@@ -234,22 +234,22 @@ const DB_REPORT_ARRAY = [
             "INDEX" => 40,
         ],
         B_RESAERCHLAB => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "folab",
             "INDEX" => 41,
         ],
         B_TERRAFORMER => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "terra",
             "INDEX" => 42,
         ],
         B_ALLIANCEDEPOT => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "allydep",
             "INDEX" => 43,
         ],
         B_ROCKETSILO => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "raksilo",
             "INDEX" => 44,
         ],
@@ -259,17 +259,17 @@ const DB_REPORT_ARRAY = [
             "INDEX" => 45,
         ],
         B_SENSORPHALANX => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "sensor",
             "INDEX" => 46,
         ],
         B_JUMPGATE => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "sprungtor",
             "INDEX" => 47,
         ],
         /*B_SPACEDOCK => [
-            "TYPE" => "facility",
+            "TYPE" => "building",
             "DBFIELD" => "spacedock",
             "INDEX" => 48,
         ],

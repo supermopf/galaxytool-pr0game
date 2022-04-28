@@ -236,7 +236,6 @@ class PlanetinfoParser extends XMLParserGlobal{
             $entries_array["user_id"] = intval($userid);
             $entries_array["scanned"] = 1;
 
-
             switch ($planetinfo_type){
                 case "fleet":
                     $entries_array["fleet_resis"] = intval($fleet_df);
@@ -244,8 +243,8 @@ class PlanetinfoParser extends XMLParserGlobal{
                 case "defense":
                     $entries_array["defence_resis"] = intval($defence_df);
                     break;
-                case "facility":
-                    if($moon){
+                case "building":
+                    if($moon == "true"){
                         $entries_array["min_phalanx"] = intval($min_phalanx);
                         $entries_array["max_phalanx"] = intval($max_phalanx);
                     }else{
@@ -261,6 +260,7 @@ class PlanetinfoParser extends XMLParserGlobal{
 				$this->unknown_entries_found = true;
 			}
 		}
+
 
 
         $OnDuplicateUpdate = "";
