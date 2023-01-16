@@ -233,7 +233,7 @@ class CombatParser extends XMLParserGlobal{
 		}
 
 		while ($line = $stmt->fetch(PDO::FETCH_OBJ)) {
-			if ($line->last_update > date("Y-m-d H:i:s",time() - 86400 * 7)) {
+			if ($line->last_update > date("Y-m-d H:i:s",time() - 86400 * 30)) {
 				// entry is not older than one week
 				$coordinates[ $line->galaxy.":".$line->system.":".$line->planet ] = $line->player_id; // coordinates are okay
 			}

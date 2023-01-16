@@ -79,7 +79,7 @@ class pr0gameAPIParser extends GenericSuperclass
      */
     public function load_pr0game_statistics_data($user_id)
     {
-        $PR0GAME_STATS_URL = "https://pr0game.com/stats.json";
+        $PR0GAME_STATS_URL = "https://pr0game.com/stats_Universe_2.json";
         $user_id = intval($user_id);
         if ($user_id < 1) throw new InvalidArgumentException("Invalid user id provided");
 
