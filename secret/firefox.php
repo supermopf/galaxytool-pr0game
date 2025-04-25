@@ -113,6 +113,9 @@ switch ($_POST['type']) {
 	case 'combat_report':
 		$parser = new CombatParser($combattable,$combatparty,$utablename,$dbtablename,$systemtablename,$playertable,$player_activity,$global_universe);
 		break;
+	case 'debris_report':
+		$parser = new DebrisParser($debristable,$utablename,$playertable,$player_activity,$global_universe);
+		break;
 
 	default:
 		$msg_obj = new ErrorObject(ErrorObject::severity_error,"invlid type: ".$_POST['type']); // no return code

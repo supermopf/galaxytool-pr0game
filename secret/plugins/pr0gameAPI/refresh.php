@@ -1,4 +1,5 @@
 <?php
+die();
 @require "../../../config/config.php";
 @require "../../../config/attributes.php";
 spl_autoload_register('AutoLoader::ParserLoader');

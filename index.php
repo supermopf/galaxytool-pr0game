@@ -1,4 +1,4 @@
-<?php
+dojo<?php
 header("content-type: text/html; charset=utf-8");
 require "config/config.php";
 require "config/attributes.php";
@@ -102,7 +102,7 @@ if (!isset($_SESSION['s_loggedin']) || $_SESSION['s_loggedin'] && $_SESSION['s_s
     <title><?php echo PROGRAM_NAME." ".VERSION; ?></title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1; charset=UTF-8">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
- 	<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/dojo/1.8/dijit/themes/claro/claro.css" />
+ 	<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/dojo/1.14.1/dijit/themes/claro/claro.css" />
  	<link rel="stylesheet" type="text/css" href="styles.css" />
 	<script data-dojo-config="
 			isDebug: true,
@@ -115,7 +115,7 @@ if (!isset($_SESSION['s_loggedin']) || $_SESSION['s_loggedin'] && $_SESSION['s_s
      		},{
                   	name: 'resource',
                    	location: location.pathname.replace(/[^/]+$/, '') + 'secret/nls'
-            }]" src="//ajax.googleapis.com/ajax/libs/dojo/1.8.3/dojo/dojo.js">;
+            }]" src="//ajax.googleapis.com/ajax/libs/dojo/1.14.1/dojo/dojo.js">;
 	</script>	
 	<script src="secret/javascript/startpage.js"></script>
 	<script type="text/javascript">

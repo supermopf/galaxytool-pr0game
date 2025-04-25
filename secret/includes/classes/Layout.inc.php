@@ -7,8 +7,10 @@ class Layout {
 		$style_path = (isset($_SESSION['a_auth']))? $_SESSION['a_auth']->get_setting(iAuthorization::setting_stylepath) : "styles.css";
 		
 		// determine dojo version - stats page requires dojo 1.8.3 because of: https://bugs.dojotoolkit.org/ticket/17086
-		if (strpos($_SERVER['PHP_SELF'],"/stats.php") !== false) $dojo = "1.8.3";
-		else $dojo = "1.9.1";
+		//if (strpos($_SERVER['PHP_SELF'],"/stats.php") !== false) $dojo = "1.8.3";
+		//else $dojo = "1.9.1";
+		
+		$dojo = "1.14.1";
 		
 		$content = '<!doctype HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 		<html>
@@ -198,7 +200,7 @@ class Layout {
 		$content .= "</div>";
 		/***************** End of content section ***************************/
 
-		$selection = array("index.php"=>"", "show.php"=>"", "reports.php"=>"", "galaxyview.php"=>"", "stats.php"=>"", "history.php"=>"", "fleet_movements.php"=>"", "combat_reports.php"=>"", "messages.php"=>"");
+		$selection = array("index.php"=>"", "show.php"=>"", "reports.php"=>"", "galaxyview.php"=>"", "stats.php"=>"", "history.php"=>"", "fleet_movements.php"=>"", "combat_reports.php"=>"", "debris.php"=>"", "messages.php"=>"");
 		foreach($selection as $index => $selected) {
 			if (strpos($_SERVER['PHP_SELF'], "/".$index) !== false) {
 				$selection[$index] = "selected";
@@ -235,6 +237,7 @@ class Layout {
 	             <li><a class="menubutton '.$selection['history.php'].'" href="history.php">'.MENU_ALLYHISTORY.'</a></li>
 	             <li><a class="menubutton '.$selection['fleet_movements.php'].'" href="fleet_movements.php#all">'.MENU_FLEET_MOVEMENTS.'</a></li>
 	             <li><a class="menubutton '.$selection['combat_reports.php'].'" href="combat_reports.php">'.MENU_COMBAT_REPORTS.'</a></li>
+				 <li><a class="menubutton '.$selection['debris.php'].'" href="debris.php">'.MENU_DEBRIS.'</a></li>
 	             <li><a class="menubutton '.$selection['messages.php'].'" href="messages.php">'.MENU_MESSAGES.'</a></li>';
 
 		// plugin hyperlinks - consider also "selection" for them!

@@ -716,6 +716,8 @@ define(
 		COMBATS_APPLY : "Übernehmen",
 		COMBATS_COMBAT_SUMMARY : "Kampfberichtszusammenfassung",
 		COMBATS_DOWNLOAD_CSV : "Als CSV Datei herunterladen",
+		DEBRIS_OWNER : "Besitzer",
+		DEBRIS_COLLECTOR : "DEBRIS_COLLECTOR",
 		REPORT_ARCHIVE_TITLE : "Scanberichtsarchiv",
 		REPORT_ARCHIVE_COORDINATES : "Koordinaten",
 		REPORT_ARCHIVE_SCANTIME : "Scanzeitpunkt",

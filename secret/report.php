@@ -29,10 +29,10 @@ if (isset($_GET['coordinates']) && preg_replace("/\d+\:\d+\:\d+/","",$_GET['coor
 $coordinates = $_GET['coordinates'];
 ?>
 
-require([ "dojo/parser", 
-          "dojo/ready", 
-          "dojo/on", 
-          "dojo/dom", 
+require([ "dojo/parser",
+          "dojo/ready",
+          "dojo/on",
+          "dojo/dom",
           "dojo/dom-attr",
 		  "dojo/NodeList-dom",
 		  "dijit/Dialog",
@@ -41,7 +41,7 @@ require([ "dojo/parser",
 		  "dijit/layout/BorderContainer",
 		  "dijit/form/DropDownButton",
 		  "dijit/form/Select",
-		  ], 
+		  ],
 		function(parser, ready, on, dom, attr) {
 			ready(function() {
 				galaxytool.ReportFetch.showReport('<?php echo $coordinates; ?>',<?php echo $moon; ?>,true);

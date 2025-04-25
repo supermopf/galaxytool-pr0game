@@ -79,6 +79,7 @@ $probe_array = array(
 "Sensorphalanx" => B_SENSORPHALANX,
 "Sprungtor" => B_JUMPGATE,
 "TechnoDome" => B_TECHNODOME,
+"Reparaturdock" => B_REPAIRDOCK,
 
 /*********************************************************************/
 /*****************************  Research   ***************************/

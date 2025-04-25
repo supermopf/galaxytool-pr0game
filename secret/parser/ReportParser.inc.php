@@ -150,9 +150,16 @@ class ReportParser extends XMLParserGlobal
     {
 
         $report_ids = array();
-        foreach ($reports as $report) {
-            if ($report['msg_id'] != null) array_push($report_ids, $report['msg_id']);
+		//echo print_r($reports);
+        foreach ($reports as $report) {			
+            if ($report['msg_id'] != null){ 
+				array_push($report_ids, $report['msg_id']);
+			}
         }
+		
+		if($report_ids == array()){			
+			return true;
+		}
 
         // check which IDs exist on DB level
         $query = "SELECT `msg_id` FROM `" . $this->reporttable . "` WHERE `msg_id` IN ('" . implode("','", $report_ids) . "')";
@@ -286,69 +293,68 @@ class ReportParser extends XMLParserGlobal
                 $this->unknown_entries_error_object->add_child_message($unknown_entries);
                 $this->unknown_entries_found = true;
             }
-        }
+        
 
 
-        //Get the SQL Ready
-        $general_fields = ['galaxy', 'system', 'planet', 'planetname', 'moon', 'msg_id', 'fleet_resis',
-            'defence_resis', 'scantime', 'user_id', 'scanned', 'min_phalanx', 'max_phalanx', 'min_rak', 'max_rak'];
+			//Get the SQL Ready
+			$general_fields = ['galaxy', 'system', 'planet', 'planetname', 'moon', 'msg_id', 'fleet_resis',
+				'defence_resis', 'scantime', 'user_id', 'scanned', 'min_phalanx', 'max_phalanx', 'min_rak', 'max_rak'];
 
-        $OnDuplicateUpdate = "";
-        $EntryFields = "";
-        $EntryValues = "(";
-        //Add all general Values
-        foreach ($general_fields as $field) {
-            $EntryFields .= "`" . $field . "`,";
-            if (isset($entries_array[$field])) {
-                $EntryValues .= ":" . $field . ",";
-            } else {
-                $EntryValues .= "0,";
-            }
-            if ($field != "galaxy" && $field != "system" && $field != "planet") {
-                $OnDuplicateUpdate .= $field . '=VALUES(' . $field . '),';
-            }
-        }
-        //Add our Game Objects Values
-        foreach (DB_REPORT_ARRAY as $entryobject) {
-            $EntryFields .= "`" . $entryobject["DBFIELD"] . "`,";
-            $OnDuplicateUpdate .= $entryobject["DBFIELD"] . '=VALUES(' . $entryobject["DBFIELD"] . '),';
-            if (isset($entries_array[$entryobject["DBFIELD"]])) {
-                $EntryValues .= ":" . $entryobject["DBFIELD"] . ",";
-            } else {
-                $EntryValues .= "0,";
-            }
-        }
-        $EntryFields = rtrim($EntryFields, ",");
-        $EntryValues = rtrim($EntryValues, ",") . ")";
-        $OnDuplicateUpdate = rtrim($OnDuplicateUpdate, ",");
+			$OnDuplicateUpdate = "";
+			$EntryFields = "";
+			$EntryValues = "(";
+			//Add all general Values
+			foreach ($general_fields as $field) {
+				$EntryFields .= "`" . $field . "`,";
+				if (isset($entries_array[$field])) {
+					$EntryValues .= ":" . $field . ",";
+				} else {
+					$EntryValues .= "0,";
+				}
+				if ($field != "galaxy" && $field != "system" && $field != "planet") {
+					$OnDuplicateUpdate .= $field . '=VALUES(' . $field . '),';
+				}
+			}
+			//Add our Game Objects Values
+			foreach (DB_REPORT_ARRAY as $entryobject) {
+				$EntryFields .= "`" . $entryobject["DBFIELD"] . "`,";
+				$OnDuplicateUpdate .= $entryobject["DBFIELD"] . '=VALUES(' . $entryobject["DBFIELD"] . '),';
+				if (isset($entries_array[$entryobject["DBFIELD"]])) {
+					$EntryValues .= ":" . $entryobject["DBFIELD"] . ",";
+				} else {
+					$EntryValues .= "0,";
+				}
+			}
+			$EntryFields = rtrim($EntryFields, ",");
+			$EntryValues = rtrim($EntryValues, ",") . ")";
+			$OnDuplicateUpdate = rtrim($OnDuplicateUpdate, ",");
 
-        $sql = 'INSERT INTO ' . $this->reporttable . ' (' . $EntryFields . ') VALUES ' . $EntryValues . ' ON DUPLICATE KEY UPDATE ' . $OnDuplicateUpdate;
+			$sql = 'INSERT INTO ' . $this->reporttable . ' (' . $EntryFields . ') VALUES ' . $EntryValues . ' ON DUPLICATE KEY UPDATE ' . $OnDuplicateUpdate;
+		
+			$stmt = DB::getDB()->prepare($sql);
 
-        $stmt = DB::getDB()->prepare($sql);
+			//PDO reads everthing as strings if not bind directly...
+			foreach ($entries_array as $key => $value) {
+				//$sql = str_replace(":".$key.",",$value.",",$sql);
+				// echo ":$key - $value - ".gettype($value)."#";
+				switch (gettype($value)) {
+					case "integer":
+						$stmt->bindValue($key, $value, PDO::PARAM_INT);
+						break;
+					default:
+						$stmt->bindValue($key, $value, PDO::PARAM_STR);
+						break;
+				}
+			}
 
-        //PDO reads everthing as strings if not bind directly...
-        foreach ($entries_array as $key => $value) {
-            //$sql = str_replace(":".$key.",",$value.",",$sql);
-            // echo ":$key - $value - ".gettype($value)."#";
-            switch (gettype($value)) {
-                case "integer":
-                    $stmt->bindValue($key, $value, PDO::PARAM_INT);
-                    break;
-                default:
-                    $stmt->bindValue($key, $value, PDO::PARAM_STR);
-                    break;
-            }
-        }
+			$res = $stmt->execute();
 
-        $res = $stmt->execute();
-
-        if ($res === false) {
-            $this->error_object = new ErrorObject(ErrorObject::severity_error, "DB error occurred while inserting or updating reports");
-            $this->error_object->add_child_message($this->get_db_error_object());
-            return false;
-        }
-
-        return true;
+			if ($res === false) {
+				$this->error_object = new ErrorObject(ErrorObject::severity_error, "DB error occurred while inserting or updating reports");
+				$this->error_object->add_child_message($this->get_db_error_object());
+				return false;
+			}
+		}
+		return true;
     }
-
 }

@@ -83,6 +83,7 @@ define("B_JUMPGATE", "Jump Gate");
 define("B_SPACEDOCK", "Space Dock");
 define("B_CRAWLER", "Crawler");
 define("B_TECHNODOME", "TechnoDome");
+define("B_REPAIRDOCK", "Repair Dock");
 
 /*********************************************************************/
 /***************************** Research ****************************/

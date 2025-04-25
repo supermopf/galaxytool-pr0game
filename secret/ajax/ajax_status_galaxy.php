@@ -21,7 +21,7 @@ $tooltipstring = "";
 
 for ($j=1;$j<=50;$j++) {
 	$tablestring .= "<tr>\n";
-	for ($i=0;$i<8;$i++) {
+	for ($i=0;$i<7;$i++) {
 		$key = $j+$i*50;
 		if ($key == 500) {
 			$tablestring .= "<td width=\"11%\">&nbsp;</td>\n";

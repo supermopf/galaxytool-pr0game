@@ -31,10 +31,9 @@ try {
 			$selection .= "</select>\n";
 			?>
 
-			<button onClick="galaxytool_status_scroll_galaxy(false)"
-				dojoType="dijit.form.Button" type="button">&lt;</button> <?php echo $selection; ?>
-			<button onClick="galaxytool_status_scroll_galaxy(true)"
-				dojoType="dijit.form.Button" type="button">&gt;</button>
+			<button onClick="galaxytool_status_scroll_galaxy(false)" dojoType="dijit.form.Button" type="button">&lt;</button>
+			<?php echo $selection; ?>
+			<button onClick="galaxytool_status_scroll_galaxy(true)" dojoType="dijit.form.Button" type="button">&gt;</button>
 		</td>
 	</tr>
 	<tr>

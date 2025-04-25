@@ -141,6 +141,9 @@ define("MENU_HELP","Hilfe");
 // 4.0
 define("MENU_TOOLOPTIONS","Galaxytool Optionen");
 
+//6.1
+define("MENU_DEBRIS","Trümmerfelder");
+
 /*********************************************************************
  * parser.inc.php
  *********************************************************************/
@@ -869,6 +872,19 @@ define("COMBATS_PLANET_FROM_TO","Planet");
 define("COMBATS_APPLY",GENERAL_APPLY);
 define("COMBATS_COMBAT_SUMMARY","Kampfberichtszusammenfassung");
 define("COMBATS_DOWNLOAD_CSV","Als CSV Datei herunterladen");
+
+/*********************************************************************
+ * debris.php
+ **********************************************************************/
+
+define("DEBRIS_TITLE","OGame Galaxytool - Trümmerfelder");
+define("DEBRIS_SEARCH_OPTIONS","Suchparameter");
+define("DEBRIS_OWNER","Besitzer");
+define("DEBRIS_COLLECTOR","Sammler");
+define("DEBRIS_DATE","Datum");
+define("DEBRIS_COORDINATES","Koordinaten");
+define("DEBRIS_SEARCH","Suchen");
+define("DEBRIS_RESET","Zurücksetzen");
 
 /*********************************************************************
  * report_archive.php

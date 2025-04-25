@@ -268,11 +268,12 @@ const DB_REPORT_ARRAY = [
             "DBFIELD" => "sprungtor",
             "INDEX" => 47,
         ],
-        /*B_SPACEDOCK => [
+        B_REPAIRDOCK => [
             "TYPE" => "building",
-            "DBFIELD" => "spacedock",
+            "DBFIELD" => "repairdock",
             "INDEX" => 48,
         ],
+		/*
         B_CRAWLER => [
             "TYPE" => "building",
             "DBFIELD" => "crawler",
@@ -380,7 +381,7 @@ const DB_REPORT_ARRAY = [
 		]
     ];
 
-const REPORT_DB_FIELDS = '`galaxy`,`system`,`planet`,`planetname`,`moon`,`metal`,`crystal`,`deuterium`,`energy`,`kt`,`gt`,`lj`,`sj`,`krz`,`ss`,`kolo`,`rec`,`spio`,`bomb`,`zerri`,`ds`,`skrz`,`sat`,`reaper`,`pathfinder`,`rak`,`ll`,`sl`,`ion`,`gauss`,`plasma`,`ksk`,`gsk`,`arak`,`irak`,`memi`,`krimi`,`deutsyn`,`solar`,`fusion`,`robo`,`nani`,`rawe`,`mesp`,`krissp`,`deutsp`,`folab`,`terra`,`allydep`,`raksilo`,`mbase`,`sensor`,`sprungtor`,`spacedock`,`crawler`,`spiolvl`,`computech`,`waffentech`,`schildtech`,`rpz`,`energytech`,`hypertech`,`vbt`,`impulse`,`hra`,`lasertech`,`iontech`,`plasmatech`,`forschungsnetz`,`expedition`,`gravi`,`fleet_resis`,`defence_resis`,`scantime`,`user_id`,`scanned`,`min_phalanx`,`max_phalanx`,`min_rak`,`max_rak`';
+const REPORT_DB_FIELDS = '`galaxy`,`system`,`planet`,`planetname`,`moon`,`metal`,`crystal`,`deuterium`,`energy`,`kt`,`gt`,`lj`,`sj`,`krz`,`ss`,`kolo`,`rec`,`spio`,`bomb`,`zerri`,`ds`,`skrz`,`sat`,`reaper`,`pathfinder`,`rak`,`ll`,`sl`,`ion`,`gauss`,`plasma`,`ksk`,`gsk`,`arak`,`irak`,`memi`,`krimi`,`deutsyn`,`solar`,`fusion`,`robo`,`nani`,`rawe`,`mesp`,`krissp`,`deutsp`,`folab`,`terra`,`allydep`,`raksilo`,`mbase`,`sensor`,`sprungtor`,`repairdock`,`crawler`,`spiolvl`,`computech`,`waffentech`,`schildtech`,`rpz`,`energytech`,`hypertech`,`vbt`,`impulse`,`hra`,`lasertech`,`iontech`,`plasmatech`,`forschungsnetz`,`expedition`,`gravi`,`fleet_resis`,`defence_resis`,`scantime`,`user_id`,`scanned`,`min_phalanx`,`max_phalanx`,`min_rak`,`max_rak`';
 
 
 

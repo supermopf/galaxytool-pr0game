@@ -16,6 +16,7 @@ class XMLParserGlobal extends DBHandler {
 	const content_type_espionage        = "espionage";
 	const content_type_combat_report    = "combat_report";
 	const content_type_message          = "message";
+	const content_type_debris_report    = "debris_report";
 
 	protected $xml_schema         = "";
 	protected $playertable        = "";
@@ -77,6 +78,7 @@ class XMLParserGlobal extends DBHandler {
 		$exp_content_type != XMLParserGlobal::content_type_fleet_movement &&
 		$exp_content_type != XMLParserGlobal::content_type_espionage  &&
 		$exp_content_type != XMLParserGlobal::content_type_combat_report  &&
+		$exp_content_type != XMLParserGlobal::content_type_debris_report  &&
 		$exp_content_type != XMLParserGlobal::content_type_message ) {
 			return false;
 		}
@@ -347,6 +349,7 @@ class XMLParserGlobal extends DBHandler {
 			case XMLParserGlobal::content_type_stats:          return "622";
 			case XMLParserGlobal::content_type_galaxyview:     return "602";
 			case XMLParserGlobal::content_type_planetinfo:     return "612";
+			case XMLParserGlobal::content_type_debris_report:  return "612";
 			case XMLParserGlobal::content_type_reports:        return "612";
 			case XMLParserGlobal::content_type_fleet_movement: return "642";
 			case XMLParserGlobal::content_type_espionage:      return "652";
@@ -377,6 +380,7 @@ class XMLParserGlobal extends DBHandler {
 			case XMLParserGlobal::content_type_stats:          return "621";
 			case XMLParserGlobal::content_type_galaxyview:     return "601";
 			case XMLParserGlobal::content_type_planetinfo:     return "611";
+			case XMLParserGlobal::content_type_debris_report:  return "611";
 			case XMLParserGlobal::content_type_reports:        return "611";
 			case XMLParserGlobal::content_type_fleet_movement: return "641";
 			case XMLParserGlobal::content_type_espionage:      return "651";

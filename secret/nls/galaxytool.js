@@ -716,6 +716,8 @@ define({
 		COMBATS_APPLY : "Apply",
 		COMBATS_COMBAT_SUMMARY : "Combat report summary",
 		COMBATS_DOWNLOAD_CSV : "Download as CSV file",
+		DEBRIS_OWNER : "Besitzer",
+		DEBRIS_COLLECTOR : "DEBRIS_COLLECTOR",
 		REPORT_ARCHIVE_TITLE : "Report archive",
 		REPORT_ARCHIVE_COORDINATES : "Coordinates",
 		REPORT_ARCHIVE_SCANTIME : "Scan time",
